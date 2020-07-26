@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GestionareHotel.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,11 +17,11 @@ using System.Windows.Shapes;
 namespace GestionareHotel.Views
 {
     /// <summary>
-    /// Interaction logic for UserControl_Login.xaml
+    /// Interaction logic for LoginView.xaml
     /// </summary>
-    public partial class UserControl_Login : UserControl
+    public partial class LoginView : UserControl
     {
-        public UserControl_Login()
+        public LoginView()
         {
             InitializeComponent();
         }
@@ -52,13 +53,14 @@ namespace GestionareHotel.Views
         {
             MainWindow main = new MainWindow();
             main.Show();
-            Window test = Window.GetWindow(this);
-            test.Close();
+            Window window = Window.GetWindow(this);
+            window.Close();
         }
 
         private void btnCreateAccount_Click(object sender, RoutedEventArgs e)
         {
-
+            Window window = Window.GetWindow(this);
+            window.DataContext = new CreateAccountViewModel();           
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

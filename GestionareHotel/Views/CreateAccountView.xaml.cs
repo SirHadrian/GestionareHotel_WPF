@@ -11,20 +11,30 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace GestionareHotel.Views
 {
     /// <summary>
-    /// Interaction logic for LoginWindow.xaml
+    /// Interaction logic for CreateAccountView.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class CreateAccountView : UserControl
     {
-        public LoginWindow()
+        public CreateAccountView()
         {
             InitializeComponent();
-            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-            DataContext = new LoginViewModel();
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            Window window = Window.GetWindow(this);
+            window.DataContext = new LoginViewModel();
+        }
+
+        private void CreateAccount(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

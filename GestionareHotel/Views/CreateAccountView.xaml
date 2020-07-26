@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="GestionareHotel.Views.CreateAccountView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GestionareHotel.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="487.943" d:DesignWidth="385.189">
+
+    <Border Background="#2e3137" Margin="20" CornerRadius="20">
+        <StackPanel Margin="20">
+            <Label x:Name="AccountLabel" Content="Create Account" Foreground="White" FontSize="26" HorizontalAlignment="Center"/>
+            <Separator></Separator>
+
+            <Label x:Name="UserNameLabel" Content="UserName" Foreground="White" FontSize="18"/>
+            <TextBox x:Name="UserName_Box" Background="#545d6a" FontSize="18" Margin="2" ></TextBox>
+
+            <Label x:Name="email" Content="Email Adress" Foreground="White" FontSize="18"/>
+            <TextBox x:Name="email_box" Background="#545d6a" FontSize="18" Margin="2" ></TextBox>
+
+            <Label x:Name="PasswardLabel" Content="Password" Foreground="White" FontSize="18"/>
+            <PasswordBox x:Name="Passward_Box" Background="#545d6a" Margin="2" FontSize="18" ></PasswordBox>
+
+            <Label x:Name="ConfirmPassword" Content="Confirm Password" Foreground="White" FontSize="18"/>
+            <PasswordBox x:Name="Retype_Passward_Box" Background="#545d6a" Margin="2" FontSize="18" ></PasswordBox>
+
+            <Button x:Name="Submit" Click="CreateAccount" Margin="60, 30" Background="#545d6a" Foreground="White" FontSize="18" Content="Create"></Button>
+            <Button x:Name="Back" Visibility="Visible" Content="&lt;" HorizontalAlignment="Left" Margin="0 -736 0 0" Background="#545d6a" Foreground="White" FontSize="18" Click="Back_Click" Width="30" Height="30"/>
+
+        </StackPanel>
+    </Border>
+</UserControl>

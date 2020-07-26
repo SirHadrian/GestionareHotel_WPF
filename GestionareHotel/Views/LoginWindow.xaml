@@ -5,11 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GestionareHotel.Views"
         mc:Ignorable="d"
-        xmlns:vw="clr-namespace:GestionareHotel.Views"
-       Title="LoginScreen" Height="487.943" Width="385.189" FontSize="14" Background="#04c582">
+        xmlns:views="clr-namespace:GestionareHotel.Views"
+        xmlns:viewmodels="clr-namespace:GestionareHotel.ViewModels"
+        Title="LoginScreen" Height="487.943" Width="385.189" FontSize="14" Background="#04c582">
+
+
+    <Window.Resources>
+        <DataTemplate x:Name="LoginViewModel" DataType="{x:Type viewmodels:LoginViewModel}">
+            <views:LoginView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="CreateAccountViewModel" DataType="{x:Type viewmodels:CreateAccountViewModel}">
+            <views:CreateAccountView DataContext="{Binding}"/>
+        </DataTemplate>
+    </Window.Resources>
 
     <Grid>
-        <vw:UserControl_Login></vw:UserControl_Login>
+        <ContentControl Content="{Binding}"/>
     </Grid>
+    
+    
 </Window>
 
