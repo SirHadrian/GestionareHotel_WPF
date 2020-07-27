@@ -5,8 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GestionareHotel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Hotel" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <DockPanel Background="#2e3137" Grid.Row="0" Grid.RowSpan="5" Grid.Column="0">
+            <StackPanel>
+                <Button Content="test" Margin="6" Background="#545d6a" Foreground="White" FontSize="18"/>
+                <Button Content="test" Margin="6" Background="#545d6a" Foreground="White" FontSize="18"/>
+                <Button Content="test" Margin="6" Background="#545d6a" Foreground="White" FontSize="18"/>
+            </StackPanel>
+        </DockPanel>
+
+        <ContentControl Grid.Row="0" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="5" Content="{Binding}"></ContentControl>
     </Grid>
 </Window>
