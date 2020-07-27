@@ -1,6 +1,4 @@
-﻿using GestionareHotel.ViewModels;
-using GestionareHotel.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,18 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GestionareHotel
+namespace GestionareHotel.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for HomePageView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class HomePageView : UserControl
     {
-        public MainWindow()
+        public HomePageView()
         {
             InitializeComponent();
-            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-            DataContext = new HomePageViewModel();
         }
     }
 }

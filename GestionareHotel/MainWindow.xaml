@@ -5,7 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GestionareHotel"
         mc:Ignorable="d"
+        xmlns:views="clr-namespace:GestionareHotel.Views"
+        xmlns:viewmodels="clr-namespace:GestionareHotel.ViewModels"
         Title="Hotel" Height="450" Width="800">
+    
+
+    <Window.Resources>
+        <DataTemplate x:Name="HomePageViewModel" DataType="{x:Type viewmodels:HomePageViewModel}">
+            <views:HomePageView DataContext="{Binding}"/>
+        </DataTemplate>
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="80"></ColumnDefinition>
