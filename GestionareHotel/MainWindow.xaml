@@ -14,6 +14,9 @@
         <DataTemplate x:Name="HomePageViewModel" DataType="{x:Type viewmodels:HomePageViewModel}">
             <views:HomePageView DataContext="{Binding}"/>
         </DataTemplate>
+        <DataTemplate x:Name="AdministratorViewModel" DataType="{x:Type viewmodels:AdministratorViewModel}">
+            <views:AdministratorView DataContext="{Binding}"/>
+        </DataTemplate>
     </Window.Resources>
 
     <Grid>
@@ -35,8 +38,8 @@
 
         <DockPanel Background="#2e3137" Grid.Row="0" Grid.RowSpan="5" Grid.Column="0">
             <StackPanel>
-                <Button Content="test" Margin="6" Background="#545d6a" Foreground="White" FontSize="18"/>
-                <Button Content="test" Margin="6" Background="#545d6a" Foreground="White" FontSize="18"/>
+                <Button Content="Home" Margin="6" Background="#545d6a" Foreground="White" FontSize="18" Click="Button_Click_1"/>
+                <Button Content="Admin" Margin="6" Background="#545d6a" Foreground="White" FontSize="18" Click="Button_Click"/>
                 <Button Content="test" Margin="6" Background="#545d6a" Foreground="White" FontSize="18"/>
             </StackPanel>
         </DockPanel>

@@ -22,10 +22,22 @@ namespace GestionareHotel
     /// </summary>
     public partial class MainWindow : Window
     {
+        internal object loginLabel;
+
         public MainWindow()
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            DataContext = new HomePageViewModel();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new AdministratorViewModel();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
             DataContext = new HomePageViewModel();
         }
     }
