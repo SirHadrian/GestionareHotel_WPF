@@ -32,9 +32,5 @@ namespace GestionareHotel.Views
             window.DataContext = new LoginViewModel();
         }
 
-        private void CreateAccount(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

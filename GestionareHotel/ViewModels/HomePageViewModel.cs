@@ -8,5 +8,6 @@ namespace GestionareHotel.ViewModels
 {
     class HomePageViewModel
     {
+
     }
 }
