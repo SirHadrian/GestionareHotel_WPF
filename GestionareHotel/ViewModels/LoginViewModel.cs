@@ -1,8 +1,14 @@
 ﻿using GestionareHotel.Commands;
+using GestionareHotel.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.Entity.Core.EntityClient;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,9 +19,11 @@ namespace GestionareHotel.ViewModels
 {
     class LoginViewModel: BaseViewModel
     {
+        GestionareHotelEntities context;
+
         public LoginViewModel()
         {
-            
+            context = new GestionareHotelEntities();
         }
 
         private bool canExecuteCommand = false;
@@ -208,6 +216,42 @@ namespace GestionareHotel.ViewModels
         #endregion
 
 
+        #region Proprieties
+        //============================
+
+        private string _userName;
+        public string UserName
+        {
+            get
+            {
+                return _userName;
+            }
+            set
+            {
+                _userName = value;
+                OnPropertyChanged("UserName");
+            }
+        }
+
+        private string _password;
+        public string Password
+        {
+            get
+            {
+                return _password;
+            }
+            set
+            {
+                _password = value;
+                OnPropertyChanged("Password");
+            }
+        }
+
+
+        //============================
+        #endregion
+
+
         #region Commands
 
         public void Join(object param)
@@ -269,6 +313,98 @@ namespace GestionareHotel.ViewModels
                 if (_backCommand == null)
                     _backCommand = new RelayCommand(Back);
                 return _backCommand;
+            }
+        }
+
+
+        public void Login(object param)
+        {
+            string conectionStringEF = ConfigurationManager.ConnectionStrings["GestionareHotelEntities"].ConnectionString;
+
+            var builder = new EntityConnectionStringBuilder(conectionStringEF);
+            var regularConnectionString = builder.ProviderConnectionString;
+
+            using (SqlConnection con = new SqlConnection(regularConnectionString))
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand("Login", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@Username", UserName);
+                    cmd.Parameters.AddWithValue("@Password", Password);
+
+                    
+
+                    int status = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    if (status == 1)
+                    {
+                        MainWindow main = new MainWindow();
+                        main.Show();
+
+                        var win = Application.Current.MainWindow;
+                        win.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid username or password!");
+                    }
+
+                    
+                }
+                con.Close();
+            }
+        }
+
+
+        private ICommand _loginCommand;
+        public ICommand LoginCommand
+        {
+            get
+            {
+                if (_loginCommand == null)
+                    _loginCommand = new RelayCommand(Login);
+                return _loginCommand;
+            }
+        }
+
+
+        public void Guest(object param)
+        {
+            MainWindow main = new MainWindow();
+            main.Show();
+
+            var win = Application.Current.MainWindow;
+            win.Close();
+        }
+
+        private ICommand _guestCommand;
+        public ICommand GuestCommand
+        {
+            get
+            {
+                if (_guestCommand == null)
+                    _guestCommand = new RelayCommand(Guest);
+                return _guestCommand;
+            }
+        }
+
+
+        public void CreateAccountB(object param)
+        {
+            var win = Application.Current.MainWindow;
+            win.DataContext = new CreateAccountViewModel();
+        }
+
+        private ICommand _createAccountButton;
+        public ICommand CreateAccountButton
+        {
+            get
+            {
+                if (_createAccountButton == null)
+                    _createAccountButton = new RelayCommand(CreateAccountB);
+                return _createAccountButton;
             }
         }
 

@@ -27,24 +27,5 @@ namespace GestionareHotel.Views
             
         }
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnGuest_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow main = new MainWindow();
-            main.Show();
-            Window window = Window.GetWindow(this);
-            window.Close();
-        }
-
-        private void btnCreateAccount_Click(object sender, RoutedEventArgs e)
-        {
-            Window window = Window.GetWindow(this);
-            window.DataContext = new CreateAccountViewModel();           
-        }
-
     }
 }

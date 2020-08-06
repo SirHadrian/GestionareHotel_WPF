@@ -132,6 +132,10 @@ namespace GestionareHotel.ViewModels
                 Debug.WriteLine(ex);
                 MessageBox.Show("Username already registered"); 
             }
+
+            MessageBox.Show("Account created successfully");
+            var win = Application.Current.MainWindow;
+            win.DataContext = new LoginViewModel();
         }
 
         private ICommand _createAccountCommand;
@@ -142,6 +146,27 @@ namespace GestionareHotel.ViewModels
                 if (_createAccountCommand == null)
                     _createAccountCommand = new RelayCommand(CreateAccount);
                 return _createAccountCommand;
+            }
+        }
+
+
+
+        public void BackBTN(object param)
+        {
+            //Debug.WriteLine("TESSSSSSSSSSSSTTTTTTTTTTT");
+
+            var win = Application.Current.MainWindow;
+            win.DataContext = new LoginViewModel();
+        }
+
+        private ICommand _backCommand;
+        public ICommand BackCommand
+        {
+            get
+            {
+                if (_backCommand == null)
+                    _backCommand = new RelayCommand(BackBTN);
+                return _backCommand;
             }
         }
 

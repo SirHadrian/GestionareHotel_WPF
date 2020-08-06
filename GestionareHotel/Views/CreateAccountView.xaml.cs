@@ -26,11 +26,5 @@ namespace GestionareHotel.Views
             InitializeComponent();
         }
 
-        private void Back_Click(object sender, RoutedEventArgs e)
-        {
-            Window window = Window.GetWindow(this);
-            window.DataContext = new LoginViewModel();
-        }
-
     }
 }

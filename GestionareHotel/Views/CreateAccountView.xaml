@@ -25,7 +25,7 @@
             <TextBox Text="{Binding Password_2}" x:Name="Retype_Passward_Box" MaxLength="5" Background="#545d6a" Margin="2" FontSize="18" ></TextBox>
 
             <Button Command="{Binding CreateAccountCommand}" x:Name="Submit" Margin="60, 30" Background="#545d6a" Foreground="White" FontSize="18" Content="Create"></Button>
-            <Button x:Name="Back" Visibility="Visible" Content="&lt;" HorizontalAlignment="Left" Margin="0 -736 0 0" Background="#545d6a" Foreground="White" FontSize="18" Click="Back_Click" Width="30" Height="30"/>
+            <Button Command="{Binding BackCommand}" x:Name="Back" Visibility="Visible" Content="&lt;" HorizontalAlignment="Left" Margin="0 -736 0 0" Background="#545d6a" Foreground="White" FontSize="18" Width="30" Height="30"/>
 
         </StackPanel>
     </Border>

@@ -15,21 +15,21 @@
             <Separator Margin="5 10"></Separator>
 
             <Label x:Name="UserNameLabel" Visibility="{Binding UserNameLabel}" Content="UserName" Foreground="White" FontSize="18"/>
-            <TextBox x:Name="UserName_Box" Visibility="{Binding UserNameBox}" Background="#545d6a" FontSize="18" Margin="2" ></TextBox>
+            <TextBox Text="{Binding UserName}" x:Name="UserName_Box" Visibility="{Binding UserNameBox}" Background="#545d6a" FontSize="18" Margin="2" ></TextBox>
 
             <Label x:Name="PasswardLabel" Visibility="{Binding PasswordLabel}" Content="Password" Foreground="White" FontSize="18"/>
-            <PasswordBox x:Name="Passward_Box" Visibility="{Binding PasswordBox}" Background="#545d6a" Margin="2" FontSize="18" ></PasswordBox>
+            <TextBox Text="{Binding Password}" x:Name="Passward_Box" Visibility="{Binding PasswordBox}" Background="#545d6a" Margin="2" FontSize="18" ></TextBox>
 
             <Label x:Name="Spacer" Visibility="{Binding Spacer}" Margin="32" ></Label>
 
-            <Button x:Name="btnLogin" Visibility="{Binding BtnLogin}" Click="btnLogin_Click" Margin="60, 10" Background="#545d6a" Foreground="White" FontSize="18" Content="Login"></Button>
+            <Button x:Name="btnLogin" Visibility="{Binding BtnLogin}" Command="{Binding LoginCommand}" Margin="60, 10" Background="#545d6a" Foreground="White" FontSize="18" Content="Login"></Button>
             <Button x:Name="btnJoin" Visibility="{Binding BtnJoin}" Command="{Binding JoinCommand}" Content="Join" Margin="60, 0" Background="#545d6a" Foreground="White" FontSize="18" />
 
             <!-- Hidden Screen -->
 
             <Label x:Name="JoinLabel" Visibility="{Binding JoinLabel}" Content="Join us!" Foreground="White" FontSize="26" HorizontalAlignment="Center"/>
-            <Button x:Name="btnGuest" Visibility="{Binding BtnGuest}" Content="Guest" Margin="60, 20" Background="#545d6a" Foreground="White" FontSize="18" Click="btnGuest_Click"></Button>
-            <Button x:Name="btnCreateAccount" Visibility="{Binding BtnCreateAccount}" Content="Create Account" Margin="60, 0" Background="#545d6a" Foreground="White" FontSize="18" Click="btnCreateAccount_Click"></Button>
+            <Button x:Name="btnGuest" Command="{Binding GuestCommand}" Visibility="{Binding BtnGuest}" Content="Guest" Margin="60, 20" Background="#545d6a" Foreground="White" FontSize="18"></Button>
+            <Button x:Name="btnCreateAccount" Visibility="{Binding BtnCreateAccount}" Command="{Binding CreateAccountButton}" Content="Create Account" Margin="60, 0" Background="#545d6a" Foreground="White" FontSize="18"></Button>
             <Button x:Name="Back" Command="{Binding BackCommand}" Visibility="{Binding Back}" Content="&lt;" HorizontalAlignment="Left" Margin="0 180 0 0" Background="#545d6a" Foreground="White" FontSize="18" Width="30" Height="30"/>
         </StackPanel>
     </Border>
