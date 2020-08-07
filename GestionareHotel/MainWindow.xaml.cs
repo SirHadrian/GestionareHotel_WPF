@@ -22,8 +22,6 @@ namespace GestionareHotel
     /// </summary>
     public partial class MainWindow : Window
     {
-        internal object loginLabel;
-
         public MainWindow()
         {
             InitializeComponent();

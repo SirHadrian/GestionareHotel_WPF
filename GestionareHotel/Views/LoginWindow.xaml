@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         xmlns:views="clr-namespace:GestionareHotel.Views"
         xmlns:viewmodels="clr-namespace:GestionareHotel.ViewModels"
+        ResizeMode="NoResize"
         Title="Login" Height="487.943" Width="385.189" FontSize="14" Background="#04c582">
 
 

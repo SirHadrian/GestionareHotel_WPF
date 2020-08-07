@@ -319,6 +319,12 @@ namespace GestionareHotel.ViewModels
 
         public void Login(object param)
         {
+            if (UserName == null || Password == null) 
+            {
+                MessageBox.Show("UserName or Password missing!");
+                return;
+            }
+
             string conectionStringEF = ConfigurationManager.ConnectionStrings["GestionareHotelEntities"].ConnectionString;
 
             var builder = new EntityConnectionStringBuilder(conectionStringEF);

@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         xmlns:views="clr-namespace:GestionareHotel.Views"
         xmlns:viewmodels="clr-namespace:GestionareHotel.ViewModels"
+        ResizeMode="NoResize"
         Title="Hotel" Height="450" Width="800">
     
 
@@ -23,27 +24,18 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="80"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
+       
 
         <DockPanel Background="#2e3137" Grid.Row="0" Grid.RowSpan="5" Grid.Column="0">
             <StackPanel>
                 <Button Content="Home" Margin="6" Background="#545d6a" Foreground="White" FontSize="18" Click="Button_Click_1"/>
                 <Button Content="Admin" Margin="6" Background="#545d6a" Foreground="White" FontSize="18" Click="Button_Click"/>
-                <Button Content="test" Margin="6" Background="#545d6a" Foreground="White" FontSize="18"/>
+                <Button Content="Angajat" Margin="6" Background="#545d6a" Foreground="White" FontSize="18"/>
             </StackPanel>
         </DockPanel>
 
-        <ContentControl Grid.Row="0" Grid.Column="1" Grid.RowSpan="5" Grid.ColumnSpan="5" Content="{Binding}"></ContentControl>
+        <ContentControl Grid.Column="1" Content="{Binding}"></ContentControl>
     </Grid>
 </Window>

@@ -105,6 +105,14 @@ namespace GestionareHotel.ViewModels
                 return;
             }
 
+
+            if (!Tools.IsValidEmail(EmailAdress))
+            {
+                MessageBox.Show("Email invalid");
+                return;
+            }
+            
+
             if(this.Password_1 != this.Password_2)
             {
                 MessageBox.Show("Passwords don't match");

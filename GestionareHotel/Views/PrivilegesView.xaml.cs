@@ -17,18 +17,13 @@ using System.Windows.Shapes;
 namespace GestionareHotel.Views
 {
     /// <summary>
-    /// Interaction logic for AdministratorView.xaml
+    /// Interaction logic for PrivilegesView.xaml
     /// </summary>
-    public partial class AdministratorView : UserControl
+    public partial class PrivilegesView : UserControl
     {
-        public AdministratorView()
+        public PrivilegesView()
         {
             InitializeComponent();
-            DataContext = new PrivilegesViewModel();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
             DataContext = new PrivilegesViewModel();
         }
     }
