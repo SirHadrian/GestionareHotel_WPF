@@ -10,6 +10,8 @@ namespace GestionareHotel.Models
     {
         public string UserName { get; set; }
         public string EmailAdress { get; set; }
+        //public string Password { get; set; }
+        //public Nullable<bool> Client { get; set; }
         public Nullable<bool> Angajat { get; set; }
         public Nullable<bool> Admin { get; set; }
     }

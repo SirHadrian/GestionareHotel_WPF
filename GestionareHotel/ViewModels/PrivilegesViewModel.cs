@@ -3,7 +3,11 @@ using GestionareHotel.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
+using System.Data;
+using System.Data.Entity.Core.EntityClient;
 using System.Data.Linq;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -14,28 +18,28 @@ namespace GestionareHotel.ViewModels
 {
     class PrivilegesViewModel: BaseViewModel
     {
-        ObservableCollection<UsersClass> users;
-        GestionareHotelEntities objContext;
+        SqlDataAdapter sda;
+        SqlCommandBuilder scb;
+        DataTable dt;
+
+       
 
         public PrivilegesViewModel()
         {
-            users = new ObservableCollection<UsersClass>();
-            objContext = new GestionareHotelEntities();
             
         }
 
         #region Properties
 
-        public ObservableCollection<UsersClass> UsersList
+        private DataTable _usersDataTable;
+
+        public DataTable UsersDataTable
         {
-            get
-            {
-                return users;
-            }
+            get { return _usersDataTable; }
             set
             {
-                users = value;
-                OnPropertyChanged("UsersList");
+                _usersDataTable = value;
+                OnPropertyChanged("UsersDataTable");
             }
         }
 
@@ -47,28 +51,22 @@ namespace GestionareHotel.ViewModels
 
         public void LoadUsers(object param)
         {
-            users.Clear();
+            string conectionStringEF = ConfigurationManager.ConnectionStrings["GestionareHotelEntities"].ConnectionString;
+            var builder = new EntityConnectionStringBuilder(conectionStringEF);
+            var regularConnectionString = builder.ProviderConnectionString;
 
-            try
-            {
-                var ObjQuery = from obj in objContext.Users
-                               select obj;
-                foreach (var User in ObjQuery)
-                {
-                    users.Add(new UsersClass { UserName = User.UserName, EmailAdress = User.EmailAdress, Angajat = User.Angajat, Admin = User.Admin });
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
 
-            for (int i = 0; i < users.Count(); ++i)
-            { 
-                Debug.WriteLine(users[i].UserName);
-                Debug.WriteLine(users[i].EmailAdress);
-                
-            }
+            SqlConnection con = new SqlConnection(regularConnectionString);
+            string querry = "select UserName, EmailAdress, Angajat, Admin from Users;";
+
+            sda = new SqlDataAdapter(querry, con);
+            dt = new DataTable();
+            sda.Fill(dt);
+
+            UsersDataTable = dt;
+
+            //Debug.WriteLine("ExECUtaT");
+
         }
 
         private ICommand _loadUsers;
@@ -79,6 +77,25 @@ namespace GestionareHotel.ViewModels
                 if (_loadUsers == null)
                     _loadUsers = new RelayCommand(LoadUsers);
                 return _loadUsers;
+            }
+        }
+
+
+
+        public void UpdateUsers(object param)
+        {
+            scb = new SqlCommandBuilder(sda);
+            sda.Update(UsersDataTable);
+        }
+
+        private ICommand _updateUsers;
+        public ICommand UpdateUsersCommand
+        {
+            get
+            {
+                if (_updateUsers == null)
+                    _updateUsers = new RelayCommand(UpdateUsers);
+                return _updateUsers;
             }
         }
         #endregion

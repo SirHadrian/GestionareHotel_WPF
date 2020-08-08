@@ -124,7 +124,9 @@ namespace GestionareHotel.ViewModels
                 UserName = this.UserName,
                 EmailAdress = this.EmailAdress,
                 Password = this.Password_1,
-                Client = true
+                Client = true,
+                Angajat = false,         
+                Admin = false                
             };
 
             context.Users.Add(newUser);

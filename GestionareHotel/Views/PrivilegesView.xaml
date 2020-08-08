@@ -27,7 +27,7 @@
             </Grid.ColumnDefinitions>
 
 
-            <DataGrid x:Name="dgUsers" ItemsSource="{Binding UsersList}" AutoGenerateColumns="False" Grid.Row="2" Grid.RowSpan="4" Grid.Column="1" Grid.ColumnSpan="2">
+            <DataGrid x:Name="dgUsers" ItemsSource="{Binding UsersDataTable}" AutoGenerateColumns="False" Grid.Row="2" Grid.RowSpan="4" Grid.Column="1" Grid.ColumnSpan="2">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="User" Binding="{Binding UserName}"/>
                     <DataGridTextColumn Header="Email" Binding="{Binding EmailAdress}"/>
@@ -37,9 +37,11 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <Button x:Name="LoadUsersBtn" Command="{Binding LoadUsersCommand}" Content="Load Users" Grid.Column="1" Grid.Row="1" Margin="80 16" FontSize="24"></Button>
+            <Button x:Name="LoadUsersBtn" Command="{Binding LoadUsersCommand}" Content="Load Users" Grid.Column="1" Grid.Row="1" Margin="80 16" FontSize="20"></Button>
+            <Button x:Name="UpdateUsersBtn" Command="{Binding UpdateUsersCommand}" Content="Update Users" Grid.Column="2" Grid.Row="1" Margin="80 16" FontSize="20"></Button>
 
-            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Foreground="White" FontSize="40" Content="Wellcome to privileges page!"></Label>
+
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Foreground="White" FontSize="40" Content="Wellcome to privileges page!"></Label>
         </Grid>
 
         

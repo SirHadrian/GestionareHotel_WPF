@@ -1,6 +1,12 @@
-﻿using GestionareHotel.ViewModels;
+﻿using GestionareHotel.Models;
+using GestionareHotel.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Configuration;
+using System.Data;
+using System.Data.Entity.Core.EntityClient;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,5 +32,7 @@ namespace GestionareHotel.Views
             InitializeComponent();
             DataContext = new PrivilegesViewModel();
         }
+
+        
     }
 }
