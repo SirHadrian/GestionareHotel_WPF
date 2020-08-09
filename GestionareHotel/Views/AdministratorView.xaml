@@ -13,26 +13,26 @@
         <DataTemplate x:Name="PrivilegesViewModel" DataType="{x:Type viewmodels:PrivilegesViewModel}">
             <views:PrivilegesView DataContext="{Binding}"/>
         </DataTemplate>
-        <DataTemplate x:Name="HomePageViewModel" DataType="{x:Type viewmodels:HomePageViewModel}">
-            <views:HomePageView DataContext="{Binding}"/>
+        <DataTemplate x:Name="HomePageViewModel" DataType="{x:Type viewmodels:RoomsViewModel}">
+            <views:RoomsView DataContext="{Binding}"/>
         </DataTemplate>
     </UserControl.Resources>
 
-    <Border Background="#2e3137" Margin="6" CornerRadius="10">
+    <Border Background="#2e3137" Margin="6" CornerRadius="10 0 0 10">
         <Grid>
             <Grid.ColumnDefinitions>
-                
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition Width="100"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <DockPanel Background="#24272b" Grid.Row="0" Grid.RowSpan="6" Grid.Column="3">
                 <StackPanel>
-                    <Button Content="Privileges" Margin="6" Background="#545d6a" Foreground="White" FontSize="18" Click="Button_Click"/>
-                    <Button Content="test" Margin="6" Background="#545d6a" Foreground="White" FontSize="18"/>
+                    <Button x:Name="PrivilegesBtn" Content="Privileges" Margin="6" Background="#545d6a" Foreground="White" FontSize="18" Click="PrivilegesBtn_Click"/>
+                    <Button x:Name="RoomsBtn" Content="Rooms" Margin="6" Background="#545d6a" Foreground="White" FontSize="18" Click="RoomsBtn_Click"/>
                     <Button Content="test" Margin="6" Background="#545d6a" Foreground="White" FontSize="18"/>
                 </StackPanel>
             </DockPanel>
+            
 
             <ContentControl Grid.Column="0" Content="{Binding}"></ContentControl>
 

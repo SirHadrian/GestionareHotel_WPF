@@ -27,7 +27,12 @@ namespace GestionareHotel.Views
             DataContext = new PrivilegesViewModel();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void RoomsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new RoomsViewModel();
+        }
+
+        private void PrivilegesBtn_Click(object sender, RoutedEventArgs e)
         {
             DataContext = new PrivilegesViewModel();
         }
