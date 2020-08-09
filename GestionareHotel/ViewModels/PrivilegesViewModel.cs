@@ -43,6 +43,19 @@ namespace GestionareHotel.ViewModels
             }
         }
 
+        private string _userToBeDeleted;
+        public string DeleteThis
+        {
+            get
+            {
+                return _userToBeDeleted;
+            }
+            set
+            {
+                _userToBeDeleted = value;
+                OnPropertyChanged("DeleteThis");
+            }
+        }
 
         #endregion
 
@@ -96,6 +109,46 @@ namespace GestionareHotel.ViewModels
                 if (_updateUsers == null)
                     _updateUsers = new RelayCommand(UpdateUsers);
                 return _updateUsers;
+            }
+        }
+
+
+
+        public void DeleteUser(object param)
+        {
+            if (DeleteThis == null)
+                return;
+
+            string conectionStringEF = ConfigurationManager.ConnectionStrings["GestionareHotelEntities"].ConnectionString;
+
+            var builder = new EntityConnectionStringBuilder(conectionStringEF);
+            var regularConnectionString = builder.ProviderConnectionString;
+
+            using (SqlConnection con = new SqlConnection(regularConnectionString))
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand("UserDel", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@userDel", DeleteThis);
+
+                    cmd.ExecuteNonQuery();
+                }
+                con.Close();
+            }
+            DeleteThis = null;
+            //Debug.WriteLine("Executed");
+        }
+
+        private ICommand _deleteUsers;
+        public ICommand DeleteUsersCommand
+        {
+            get
+            {
+                if (_deleteUsers == null)
+                    _deleteUsers = new RelayCommand(DeleteUser);
+                return _deleteUsers;
             }
         }
         #endregion
