@@ -96,6 +96,7 @@
     <Compile Include="ViewModels\CreateAccountViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\OffersViewModel.cs" />
     <Compile Include="ViewModels\PrivilegesViewModel.cs" />
     <Compile Include="ViewModels\RoomsViewModel.cs" />
     <Compile Include="Views\AdministratorView.xaml.cs">
@@ -112,6 +113,9 @@
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OffersView.xaml.cs">
+      <DependentUpon>OffersView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PrivilegesView.xaml.cs">
       <DependentUpon>PrivilegesView.xaml</DependentUpon>
@@ -148,6 +152,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OffersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
