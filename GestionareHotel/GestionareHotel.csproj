@@ -51,6 +51,7 @@
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -70,24 +71,24 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Models\GestionareHotel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestionareHotel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GestionareHotel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestionareHotel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GestionareHotel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestionareHotel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Tools.cs" />
     <Compile Include="Models\User.cs">
-      <DependentUpon>Users.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Users.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Users.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Users.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Users.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Users.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Users.edmx</DependentUpon>
+      <DependentUpon>GestionareHotel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UsersClass.cs" />
     <Compile Include="ViewModels\AdministratorViewModel.cs" />
@@ -177,12 +178,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Models\Users.edmx">
+    <EntityDeploy Include="Models\GestionareHotel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Users.Designer.cs</LastGenOutput>
+      <LastGenOutput>GestionareHotel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\Users.edmx.diagram">
-      <DependentUpon>Users.edmx</DependentUpon>
+    <None Include="Models\GestionareHotel.edmx.diagram">
+      <DependentUpon>GestionareHotel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -193,17 +194,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="Models\Users.Context.tt">
+    <Content Include="Models\GestionareHotel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Users.edmx</DependentUpon>
-      <LastGenOutput>Users.Context.cs</LastGenOutput>
+      <DependentUpon>GestionareHotel.edmx</DependentUpon>
+      <LastGenOutput>GestionareHotel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Users.tt">
+    <Content Include="Models\GestionareHotel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Users.edmx</DependentUpon>
-      <LastGenOutput>Users.cs</LastGenOutput>
+      <DependentUpon>GestionareHotel.edmx</DependentUpon>
+      <LastGenOutput>GestionareHotel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

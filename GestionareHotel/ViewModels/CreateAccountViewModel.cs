@@ -2,7 +2,11 @@
 using GestionareHotel.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.Entity.Core.EntityClient;
 using System.Data.Linq;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -15,11 +19,10 @@ namespace GestionareHotel.ViewModels
 {
     class CreateAccountViewModel: BaseViewModel
     {
-        GestionareHotelEntities context;
-
+ 
         public CreateAccountViewModel()
         {
-            context = new GestionareHotelEntities();
+           
         }
 
 
@@ -119,29 +122,50 @@ namespace GestionareHotel.ViewModels
                 return;
             }
 
-            User newUser = new User()
-            {
-                UserName = this.UserName,
-                EmailAdress = this.EmailAdress,
-                Password = this.Password_1,
-                Client = true,
-                Angajat = false,         
-                Admin = false                
-            };
+            //TEST ========
 
-            context.Users.Add(newUser);
+            string conectionStringEF = ConfigurationManager.ConnectionStrings["GestionareHotelEntities"].ConnectionString;
 
-            try
+            var builder = new EntityConnectionStringBuilder(conectionStringEF);
+            var regularConnectionString = builder.ProviderConnectionString;
+
+            using (SqlConnection con = new SqlConnection(regularConnectionString))
             {
-                context.SaveChanges();
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand("isUserNameAndEmail", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@username", UserName);
+                    cmd.Parameters.AddWithValue("@email", EmailAdress);
+
+                    int status = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    if (status == 1)
+                    {
+                        MessageBox.Show("UserName or Email already registered");
+                        return;
+                    }
+                    else
+                    {
+                        using (SqlCommand cmd2 = new SqlCommand("NewUser", con))
+                        {
+                            cmd2.CommandType = CommandType.StoredProcedure;
+                            cmd2.Parameters.AddWithValue("@username", UserName);
+                            cmd2.Parameters.AddWithValue("@email", EmailAdress);
+                            cmd2.Parameters.AddWithValue("@password", Password_1);
+                            cmd2.Parameters.AddWithValue("@client", 1);
+                            cmd2.Parameters.AddWithValue("@angajat", 0);
+                            cmd2.Parameters.AddWithValue("@admin", 0);
+
+                            cmd2.ExecuteNonQuery();
+                        }
+                    }
+                }
+                con.Close();
             }
-            catch(Exception ex)
-            {
-                this.UserName = "";
-                context.Users.Remove(newUser);
-                Debug.WriteLine(ex);
-                MessageBox.Show("Username already registered"); 
-            }
+
+            //================
 
             MessageBox.Show("Account created successfully");
             var win = Application.Current.MainWindow;

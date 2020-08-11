@@ -37,12 +37,12 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <Button x:Name="LoadUsersBtn" Command="{Binding LoadUsersCommand}" Content="Load Users" Grid.Column="1" Grid.Row="1" Margin="120 16 40 16" FontSize="16"></Button>
-            <Button x:Name="UpdateUsersBtn" Command="{Binding UpdateUsersCommand}" Content="Update Users" Grid.Column="2" Grid.Row="1" Margin="40 16 120 16" FontSize="16"></Button>
+            <Button x:Name="LoadUsersBtn" Command="{Binding LoadUsersCommand}" Content="Load Users" Grid.Column="1" Grid.Row="1" Margin="120 16 40 16" Background="#545d6a" Foreground="White" FontSize="18"></Button>
+            <Button x:Name="UpdateUsersBtn" Command="{Binding UpdateUsersCommand}" Content="Update Users" Grid.Column="2" Grid.Row="1" Margin="40 16 120 16" Background="#545d6a" Foreground="White" FontSize="18"></Button>
 
             <Label Content="Delete Account: " Grid.Row="0" Grid.Column="1" FontSize="16" Foreground="White" Margin="20 18 20 20"></Label>
             <TextBox x:Name="DeleteUser" Text="{Binding DeleteThis}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="150 24 264 20" ></TextBox>
-            <Button Command="{Binding DeleteUsersCommand}" Content="Delete" Grid.Column="2" Margin="40 24 180 20" FontSize="16"></Button>
+            <Button Background="#545d6a" Foreground="White" FontSize="16" Command="{Binding DeleteUsersCommand}" Content="Delete" Grid.Column="2" Margin="40 24 180 16"></Button>
         </Grid>
     </Border>
 </UserControl>

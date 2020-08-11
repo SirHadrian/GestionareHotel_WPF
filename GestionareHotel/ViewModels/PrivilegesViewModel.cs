@@ -22,8 +22,6 @@ namespace GestionareHotel.ViewModels
         SqlCommandBuilder scb;
         DataTable dt;
 
-       
-
         public PrivilegesViewModel()
         {
             

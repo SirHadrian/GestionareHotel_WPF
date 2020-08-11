@@ -19,11 +19,11 @@ namespace GestionareHotel.ViewModels
 {
     class LoginViewModel: BaseViewModel
     {
-        GestionareHotelEntities context;
+        GestionareHotelEntities1 context;
 
         public LoginViewModel()
         {
-            context = new GestionareHotelEntities();
+            context = new GestionareHotelEntities1();
         }
 
         private bool canExecuteCommand = false;
