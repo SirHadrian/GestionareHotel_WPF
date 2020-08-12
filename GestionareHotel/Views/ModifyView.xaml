@@ -50,14 +50,17 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <Button Command="{Binding LoadOffersCommand}" Background="#545d6a" Foreground="White" FontSize="16" Margin="12" Content="Load Offers" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="3"></Button>
-            <Button Command="{Binding LoadRoomsCommand}" Background="#545d6a" Foreground="White" FontSize="16" Content="Load Rooms" Margin="12" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="7"></Button>
-
+            <Button Command="{Binding LoadOffersCommand}" Background="#545d6a" Foreground="White" FontSize="16" Margin="10" Content="  Load Offers  " HorizontalAlignment="Left" Grid.Column="0" Grid.Row="3"></Button>
+            <Button Command="{Binding UpdateOffersCommand}" Content=" Update Offers " Grid.Column="0" Grid.Row="3" Margin="10" HorizontalAlignment="Right" Background="#545d6a" Foreground="White" FontSize="18"></Button>
+            
+            <Button Command="{Binding LoadRoomsCommand}" Background="#545d6a" Foreground="White" FontSize="16" Content="  Load Rooms  " Margin="10" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="7"></Button>
+            <Button Command="{Binding UpdateRoomsCommand}" Content=" Update Rooms " Grid.Column="0" Grid.Row="7" Margin="10" HorizontalAlignment="Right" Background="#545d6a" Foreground="White" FontSize="18"></Button>
+            
             <TextBox Text="{Binding DeleteOfferID}" Grid.Column="1" Grid.Row="3" Margin="50 12 200 12"></TextBox>
-            <Button Command="{Binding DeleteOfferCommand}" Background="#545d6a" Foreground="White" FontSize="16" Content="Delete" Grid.Column="1" Grid.Row="3" Margin="12" HorizontalAlignment="Center"></Button>
+            <Button Command="{Binding DeleteOfferCommand}" Background="#545d6a" Foreground="White" FontSize="16" Content="Delete" Grid.Column="1" Grid.Row="3" Margin="10" HorizontalAlignment="Center"></Button>
 
             <TextBox Text="{Binding DeleteRoomID}" Grid.Column="1" Grid.Row="7" Margin="50 12 200 12"></TextBox>
-            <Button Command="{Binding DeleteRoomCommand}" Background="#545d6a" Foreground="White" FontSize="16" Content="Delete" Grid.Column="1" Grid.Row="7" Margin="12" HorizontalAlignment="Center"></Button>
+            <Button Command="{Binding DeleteRoomCommand}" Background="#545d6a" Foreground="White" FontSize="16" Content="Delete" Grid.Column="1" Grid.Row="7" Margin="10" HorizontalAlignment="Center"></Button>
 
         </Grid>
     </Border>

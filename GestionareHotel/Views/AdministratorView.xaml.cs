@@ -46,5 +46,10 @@ namespace GestionareHotel.Views
         {
             DataContext = new ModifyViewModel();
         }
+
+        private void ServicesBtnClick(object sender, RoutedEventArgs e)
+        {
+            DataContext = new ServicesViewModel();
+        }
     }
 }

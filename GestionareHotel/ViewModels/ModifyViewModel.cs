@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace GestionareHotel.ViewModels
@@ -101,6 +102,7 @@ namespace GestionareHotel.ViewModels
                 con.Close();
             }
             DeleteOfferID = null;
+            MessageBox.Show("Offer Deleted!");
         }
 
         private ICommand _deleteOffer;
@@ -138,6 +140,7 @@ namespace GestionareHotel.ViewModels
                 con.Close();
             }
             DeleteRoomID = null;
+            MessageBox.Show("Room Deleted!");
         }
 
         private ICommand _deleteRoom;
@@ -210,6 +213,42 @@ namespace GestionareHotel.ViewModels
                 if (_loadOffers == null)
                     _loadOffers = new RelayCommand(LoadOffers);
                 return _loadOffers;
+            }
+        }
+
+
+        public void UpdateOffers(object param)
+        {
+            scb = new SqlCommandBuilder(sda);
+            sda.Update(OffersDataTable);
+        }
+
+        private ICommand _updateOffers;
+        public ICommand UpdateOffersCommand
+        {
+            get
+            {
+                if (_updateOffers == null)
+                    _updateOffers = new RelayCommand(UpdateOffers);
+                return _updateOffers;
+            }
+        }
+
+
+        public void UpdateRooms(object param)
+        {
+            scb = new SqlCommandBuilder(sda);
+            sda.Update(RoomsDataTable);
+        }
+
+        private ICommand _updateRooms;
+        public ICommand UpdateRoomsCommand
+        {
+            get
+            {
+                if (_updateRooms == null)
+                    _updateRooms = new RelayCommand(UpdateRooms);
+                return _updateRooms;
             }
         }
         //==================

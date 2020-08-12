@@ -28,6 +28,14 @@
           <Property Name="Imagine" Type="image" Nullable="false" />
           <Property Name="Pret" Type="money" Nullable="false" />
         </EntityType>
+        <EntityType Name="Servicii">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descriere" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Pret" Type="money" Nullable="false" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="ID" />
@@ -43,6 +51,7 @@
         <EntityContainer Name="GestionareHotelModelStoreContainer">
           <EntitySet Name="Offers" EntityType="Self.Offers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rooms" EntityType="Self.Rooms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Servicii" EntityType="Self.Servicii" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -65,6 +74,7 @@
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="Offers" EntityType="GestionareHotelModel.Offer" />
           <EntitySet Name="Rooms" EntityType="GestionareHotelModel.Room" />
+          <EntitySet Name="Serviciis" EntityType="GestionareHotelModel.Servicii" />
         </EntityContainer>
         <EntityType Name="Offer">
           <Key>
@@ -87,6 +97,14 @@
           <Property Name="NumarCamere" Type="Int32" Nullable="false" />
           <Property Name="NumarPersoane" Type="Int32" Nullable="false" />
           <Property Name="Imagine" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="Pret" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="Servicii">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descriere" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Pret" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
         </EntityType>
       </Schema>
@@ -130,6 +148,15 @@
                 <ScalarProperty Name="Descriere" ColumnName="Descriere" />
                 <ScalarProperty Name="Denumire" ColumnName="Denumire" />
                 <ScalarProperty Name="Id_room" ColumnName="Id_room" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Serviciis">
+            <EntityTypeMapping TypeName="GestionareHotelModel.Servicii">
+              <MappingFragment StoreEntitySet="Servicii">
+                <ScalarProperty Name="Pret" ColumnName="Pret" />
+                <ScalarProperty Name="Descriere" ColumnName="Descriere" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

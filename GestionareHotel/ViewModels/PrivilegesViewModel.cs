@@ -12,6 +12,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace GestionareHotel.ViewModels
@@ -135,6 +136,7 @@ namespace GestionareHotel.ViewModels
                 con.Close();
             }
             DeleteThis = null;
+            MessageBox.Show("User Deleted!");
             //Debug.WriteLine("Executed");
         }
 
