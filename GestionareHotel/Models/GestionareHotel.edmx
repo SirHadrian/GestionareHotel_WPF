@@ -5,6 +5,29 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="GestionareHotelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Offers">
+          <Key>
+            <PropertyRef Name="Id_Offer" />
+          </Key>
+          <Property Name="Id_Offer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Offer" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" Nullable="false" />
+          <Property Name="OfferImage" Type="image" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rooms">
+          <Key>
+            <PropertyRef Name="Id_room" />
+          </Key>
+          <Property Name="Id_room" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Denumire" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Descriere" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="NumarCamere" Type="int" Nullable="false" />
+          <Property Name="NumarPersoane" Type="int" Nullable="false" />
+          <Property Name="Imagine" Type="image" Nullable="false" />
+          <Property Name="Pret" Type="money" Nullable="false" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="ID" />
@@ -18,6 +41,8 @@
           <Property Name="Admin" Type="bit" Nullable="false" />
         </EntityType>
         <EntityContainer Name="GestionareHotelModelStoreContainer">
+          <EntitySet Name="Offers" EntityType="Self.Offers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rooms" EntityType="Self.Rooms" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -38,7 +63,32 @@
         </EntityType>
         <EntityContainer Name="GestionareHotelEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Offers" EntityType="GestionareHotelModel.Offer" />
+          <EntitySet Name="Rooms" EntityType="GestionareHotelModel.Room" />
         </EntityContainer>
+        <EntityType Name="Offer">
+          <Key>
+            <PropertyRef Name="Id_Offer" />
+          </Key>
+          <Property Name="Id_Offer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Offer1" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="OfferImage" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="Id_room" />
+          </Key>
+          <Property Name="Id_room" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Denumire" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Descriere" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NumarCamere" Type="Int32" Nullable="false" />
+          <Property Name="NumarPersoane" Type="Int32" Nullable="false" />
+          <Property Name="Imagine" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="Pret" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -55,6 +105,31 @@
                 <ScalarProperty Name="Client" ColumnName="Client" />
                 <ScalarProperty Name="Angajat" ColumnName="Angajat" />
                 <ScalarProperty Name="Admin" ColumnName="Admin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Offers">
+            <EntityTypeMapping TypeName="GestionareHotelModel.Offer">
+              <MappingFragment StoreEntitySet="Offers">
+                <ScalarProperty Name="OfferImage" ColumnName="OfferImage" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Offer1" ColumnName="Offer" />
+                <ScalarProperty Name="Id_Offer" ColumnName="Id_Offer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="GestionareHotelModel.Room">
+              <MappingFragment StoreEntitySet="Rooms">
+                <ScalarProperty Name="Pret" ColumnName="Pret" />
+                <ScalarProperty Name="Imagine" ColumnName="Imagine" />
+                <ScalarProperty Name="NumarPersoane" ColumnName="NumarPersoane" />
+                <ScalarProperty Name="NumarCamere" ColumnName="NumarCamere" />
+                <ScalarProperty Name="Descriere" ColumnName="Descriere" />
+                <ScalarProperty Name="Denumire" ColumnName="Denumire" />
+                <ScalarProperty Name="Id_room" ColumnName="Id_room" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

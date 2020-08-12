@@ -26,5 +26,7 @@ namespace GestionareHotel.Models
         }
     
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Offer> Offers { get; set; }
+        public virtual DbSet<Room> Rooms { get; set; }
     }
 }

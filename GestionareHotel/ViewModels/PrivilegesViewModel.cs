@@ -30,7 +30,6 @@ namespace GestionareHotel.ViewModels
         #region Properties
 
         private DataTable _usersDataTable;
-
         public DataTable UsersDataTable
         {
             get { return _usersDataTable; }
@@ -41,7 +40,7 @@ namespace GestionareHotel.ViewModels
             }
         }
 
-        private string _userToBeDeleted;
+        private string _userToBeDeleted = null;
         public string DeleteThis
         {
             get

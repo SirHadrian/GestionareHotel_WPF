@@ -19,6 +19,9 @@
         <DataTemplate x:Name="OffersViewModel" DataType="{x:Type viewmodels:OffersViewModel}">
             <views:OffersView DataContext="{Binding}"/>
         </DataTemplate>
+        <DataTemplate x:Name="ModifyViewModel" DataType="{x:Type viewmodels:ModifyViewModel}">
+            <views:ModifyView DataContext="{Binding}"/>
+        </DataTemplate>
     </UserControl.Resources>
 
     <Border Background="#2e3137" Margin="6" CornerRadius="10 0 0 10">
@@ -33,6 +36,7 @@
                     <Button x:Name="PrivilegesBtn" Content="Privileges" Margin="6" Background="#545d6a" Foreground="White" FontSize="18" Click="PrivilegesBtn_Click"/>
                     <Button x:Name="RoomsBtn" Content="Rooms" Margin="6" Background="#545d6a" Foreground="White" FontSize="18" Click="RoomsBtn_Click"/>
                     <Button Content="Offers" Margin="6" Background="#545d6a" Foreground="White" FontSize="18" Click="Button_Click"/>
+                    <Button Content="Modify" Margin="6" Background="#545d6a" Foreground="White" FontSize="18" Click="ModifyBtnClick"/>
                 </StackPanel>
             </DockPanel>
             
