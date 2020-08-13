@@ -7,9 +7,11 @@ using System.Data.Entity.Core.EntityClient;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace GestionareHotel.ViewModels
@@ -81,7 +83,10 @@ namespace GestionareHotel.ViewModels
         public void DeleteOffer(object param)
         {
             if (DeleteOfferID == null)
+            {
+                System.Windows.MessageBox.Show("Insert the ID", "Modify", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
+            }
 
             string conectionStringEF = ConfigurationManager.ConnectionStrings["GestionareHotelEntities"].ConnectionString;
             var builder = new EntityConnectionStringBuilder(conectionStringEF);
@@ -102,7 +107,7 @@ namespace GestionareHotel.ViewModels
                 con.Close();
             }
             DeleteOfferID = null;
-            MessageBox.Show("Offer Deleted!");
+            System.Windows.MessageBox.Show("Offer Deleted!", "Modify", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private ICommand _deleteOffer;
@@ -120,7 +125,10 @@ namespace GestionareHotel.ViewModels
         public void DeleteRoom(object param)
         {
             if (DeleteRoomID == null)
+            {
+                System.Windows.MessageBox.Show("Insert the ID", "Modify", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
+            }
 
             string conectionStringEF = ConfigurationManager.ConnectionStrings["GestionareHotelEntities"].ConnectionString;
             var builder = new EntityConnectionStringBuilder(conectionStringEF);
@@ -140,7 +148,7 @@ namespace GestionareHotel.ViewModels
                 con.Close();
             }
             DeleteRoomID = null;
-            MessageBox.Show("Room Deleted!");
+            System.Windows.MessageBox.Show("Room Deleted!", "Modify", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private ICommand _deleteRoom;

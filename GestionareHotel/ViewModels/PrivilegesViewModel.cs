@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace GestionareHotel.ViewModels
@@ -115,7 +116,10 @@ namespace GestionareHotel.ViewModels
         public void DeleteUser(object param)
         {
             if (DeleteThis == null)
+            {
+                System.Windows.MessageBox.Show("Insert ID", "Privileges", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
+            }
 
             string conectionStringEF = ConfigurationManager.ConnectionStrings["GestionareHotelEntities"].ConnectionString;
 
@@ -136,7 +140,7 @@ namespace GestionareHotel.ViewModels
                 con.Close();
             }
             DeleteThis = null;
-            MessageBox.Show("User Deleted!");
+            System.Windows.MessageBox.Show("User Deleted!", "Privileges", MessageBoxButton.OK, MessageBoxImage.Information);
             //Debug.WriteLine("Executed");
         }
 

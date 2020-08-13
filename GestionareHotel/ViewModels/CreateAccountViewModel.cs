@@ -29,7 +29,7 @@ namespace GestionareHotel.ViewModels
         #region Properties
         //=================================
 
-        private string _userName;
+        private string _userName = null;
         public string UserName 
         {
             get
@@ -43,7 +43,7 @@ namespace GestionareHotel.ViewModels
             }
         }
 
-        private string _emailAdress;
+        private string _emailAdress = null;
         public string EmailAdress
         {
             get
@@ -57,7 +57,7 @@ namespace GestionareHotel.ViewModels
             }
         }
 
-        private string _password_1;
+        private string _password_1 = null;
         public string Password_1
         {
             get
@@ -71,7 +71,7 @@ namespace GestionareHotel.ViewModels
             }
         }
 
-        private string _password_2;
+        private string _password_2 = null;
         public string Password_2
         {
             get
@@ -97,12 +97,12 @@ namespace GestionareHotel.ViewModels
         {
             //Debug.WriteLine("TESSSSSSSSSSSSTTTTTTTTTTT");
 
-            Debug.WriteLine(_userName);
-            Debug.WriteLine(_emailAdress);
-            Debug.WriteLine(_password_1);
-            Debug.WriteLine(_password_2);
+            //Debug.WriteLine(_userName);
+            //Debug.WriteLine(_emailAdress);
+            //Debug.WriteLine(_password_1);
+            //Debug.WriteLine(_password_2);
 
-            if (this.UserName == "" || this.EmailAdress == "" || this.Password_1 == "" || this.Password_2 == "") 
+            if (this.UserName == null || this.EmailAdress == null || this.Password_1 == null || this.Password_2 == null) 
             {
                 MessageBox.Show("All fields must be completed!");
                 return;
@@ -122,10 +122,12 @@ namespace GestionareHotel.ViewModels
                 return;
             }
 
-            //TEST ========
+
+            //Validate User name form data base!
+
+            //========
 
             string conectionStringEF = ConfigurationManager.ConnectionStrings["GestionareHotelEntities"].ConnectionString;
-
             var builder = new EntityConnectionStringBuilder(conectionStringEF);
             var regularConnectionString = builder.ProviderConnectionString;
 

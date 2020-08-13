@@ -29,12 +29,12 @@ namespace GestionareHotel
             DataContext = new HomePageViewModel();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void AdminBtnClick(object sender, RoutedEventArgs e)
         {
             DataContext = new AdministratorViewModel();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void HomeBtnClick(object sender, RoutedEventArgs e)
         {
             DataContext = new HomePageViewModel();
         }

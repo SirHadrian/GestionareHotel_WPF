@@ -30,9 +30,10 @@
 
         <DockPanel Background="#2e3137" Grid.Row="0" Grid.RowSpan="5" Grid.Column="0">
             <StackPanel>
-                <Button Content="Home" Margin="6" Background="#545d6a" Foreground="White" FontSize="18" Click="Button_Click_1"/>
-                <Button Content="Admin" Margin="6" Background="#545d6a" Foreground="White" FontSize="18" Click="Button_Click"/>
+                <Button Content="Home" Margin="6" Background="#545d6a" Foreground="White" FontSize="18" Click="HomeBtnClick"/>
+                <Button Content="Admin" Margin="6" Background="#545d6a" Foreground="White" FontSize="18" Click="AdminBtnClick"/>
                 <Button Content="Angajat" Margin="6" Background="#545d6a" Foreground="White" FontSize="18"/>
+                <Button Content="Client" Margin="6" Background="#545d6a" Foreground="White" FontSize="18"/>
             </StackPanel>
         </DockPanel>
 

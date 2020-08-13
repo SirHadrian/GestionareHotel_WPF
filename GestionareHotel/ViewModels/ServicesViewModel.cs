@@ -132,10 +132,12 @@ namespace GestionareHotel.ViewModels
         public void DeleteService(object param)
         {
             if (DeleteServiceID == null)
+            {
+                System.Windows.MessageBox.Show("Insert the ID", "Services", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
+            }
 
             string conectionStringEF = ConfigurationManager.ConnectionStrings["GestionareHotelEntities"].ConnectionString;
-
             var builder = new EntityConnectionStringBuilder(conectionStringEF);
             var regularConnectionString = builder.ProviderConnectionString;
 
@@ -153,7 +155,7 @@ namespace GestionareHotel.ViewModels
                 con.Close();
             }
             DeleteServiceID = null;
-            System.Windows.MessageBox.Show("Service Deleted");
+            System.Windows.MessageBox.Show("Service Deleted", "Services", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private ICommand _deleteService;
@@ -172,12 +174,11 @@ namespace GestionareHotel.ViewModels
         {
             if (Service == null || Price == null) 
             {
-                System.Windows.MessageBox.Show("Missing parameters!");
+                System.Windows.MessageBox.Show("Missing parameters!", "Services", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             string conectionStringEF = ConfigurationManager.ConnectionStrings["GestionareHotelEntities"].ConnectionString;
-
             var builder = new EntityConnectionStringBuilder(conectionStringEF);
             var regularConnectionString = builder.ProviderConnectionString;
 
@@ -195,7 +196,7 @@ namespace GestionareHotel.ViewModels
                 }
                 con.Close();
             }
-            System.Windows.MessageBox.Show("Service added!");
+            System.Windows.MessageBox.Show("Service added!", "Services", MessageBoxButton.OK, MessageBoxImage.Information);
 
             Debug.WriteLine("Executat");
         }

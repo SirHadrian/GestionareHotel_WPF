@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -44,7 +45,7 @@ namespace GestionareHotel.ViewModels
             }
         }
 
-        private string _offer;
+        private string _offer = null;
         public string Offer
         {
             get
@@ -58,7 +59,7 @@ namespace GestionareHotel.ViewModels
             }
         }
 
-        private string _price;
+        private string _price = null;
         public string Price
         {
             get
@@ -109,8 +110,13 @@ namespace GestionareHotel.ViewModels
         //=================
         public void AddOffer(object param)
         {
-            string conectionStringEF = ConfigurationManager.ConnectionStrings["GestionareHotelEntities"].ConnectionString;
+            if (Offer == null || Price == null) 
+            {
+                System.Windows.MessageBox.Show("Complete all the fields!", "Offers", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
+            string conectionStringEF = ConfigurationManager.ConnectionStrings["GestionareHotelEntities"].ConnectionString;
             var builder = new EntityConnectionStringBuilder(conectionStringEF);
             var regularConnectionString = builder.ProviderConnectionString;
 
@@ -132,7 +138,7 @@ namespace GestionareHotel.ViewModels
                 }
                 con.Close();
             }
-            MessageBox.Show("Offer added!");
+            System.Windows.MessageBox.Show("Offer added!", "Offers", MessageBoxButton.OK, MessageBoxImage.Information);
 
             Debug.WriteLine("Executat");
         }

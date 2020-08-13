@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -22,7 +23,7 @@ namespace GestionareHotel.ViewModels
     {
         #region Properties
         //=============
-        private string _denumire;
+        private string _denumire = null;
         public string Denumire
         {
             get
@@ -36,7 +37,7 @@ namespace GestionareHotel.ViewModels
             }
         }
 
-        private string _descriere;
+        private string _descriere = null;
         public string Descriere
         {
             get
@@ -50,7 +51,7 @@ namespace GestionareHotel.ViewModels
             }
         }
 
-        private string _nrCamere;
+        private string _nrCamere = null;
         public string NrCamere
         {
             get
@@ -64,7 +65,7 @@ namespace GestionareHotel.ViewModels
             }
         }
 
-        private string _nrPersoane;
+        private string _nrPersoane = null;
         public string NrPersoane
         {
             get
@@ -78,7 +79,7 @@ namespace GestionareHotel.ViewModels
             }
         }
 
-        private string _imagePath;
+        private string _imagePath = null;
         public string ImagePath
         {
             get
@@ -92,7 +93,7 @@ namespace GestionareHotel.ViewModels
             }
         }
 
-        private string _price;
+        private string _price = null;
         public string Price
         {
             get
@@ -127,8 +128,13 @@ namespace GestionareHotel.ViewModels
         //==============
         public void Add(object param)
         {
-            string conectionStringEF = ConfigurationManager.ConnectionStrings["GestionareHotelEntities"].ConnectionString;
+            if (Descriere == null || NrCamere == null || NrPersoane == null || Price == null) 
+            {
+                System.Windows.MessageBox.Show("All fields must be completed", "Rooms" , MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
+            string conectionStringEF = ConfigurationManager.ConnectionStrings["GestionareHotelEntities"].ConnectionString;
             var builder = new EntityConnectionStringBuilder(conectionStringEF);
             var regularConnectionString = builder.ProviderConnectionString;
 
@@ -150,7 +156,7 @@ namespace GestionareHotel.ViewModels
                 }
                 con.Close();
             }
-            MessageBox.Show("Room added!");
+            System.Windows.MessageBox.Show("Room added!", "Rooms", MessageBoxButton.OK, MessageBoxImage.Information);
 
             Debug.WriteLine("Executat");
         }

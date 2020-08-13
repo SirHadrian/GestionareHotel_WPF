@@ -219,7 +219,7 @@ namespace GestionareHotel.ViewModels
         #region Proprieties
         //============================
 
-        private string _userName;
+        private string _userName = null;
         public string UserName
         {
             get
@@ -233,7 +233,7 @@ namespace GestionareHotel.ViewModels
             }
         }
 
-        private string _password;
+        private string _password = null;
         public string Password
         {
             get
