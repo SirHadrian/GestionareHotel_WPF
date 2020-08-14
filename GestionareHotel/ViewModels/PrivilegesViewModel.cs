@@ -69,7 +69,7 @@ namespace GestionareHotel.ViewModels
 
 
             SqlConnection con = new SqlConnection(regularConnectionString);
-            string querry = "select UserName, EmailAdress, Angajat, Admin from Users;";
+            string querry = "SELECT ID, UserName, EmailAdress, Angajat, Admin FROM Users;";
 
             sda = new SqlDataAdapter(querry, con);
             dt = new DataTable();

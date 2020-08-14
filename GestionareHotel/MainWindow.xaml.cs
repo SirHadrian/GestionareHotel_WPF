@@ -38,5 +38,10 @@ namespace GestionareHotel
         {
             DataContext = new HomePageViewModel();
         }
+
+        private void ClientBtnClick(object sender, RoutedEventArgs e)
+        {
+            DataContext = new ClientViewModel();
+        }
     }
 }

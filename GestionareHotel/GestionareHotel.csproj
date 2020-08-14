@@ -102,6 +102,8 @@
     <Compile Include="Models\UsersClass.cs" />
     <Compile Include="ViewModels\AdministratorViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\BookViewModel.cs" />
+    <Compile Include="ViewModels\ClientViewModel.cs" />
     <Compile Include="ViewModels\CreateAccountViewModel.cs" />
     <Compile Include="ViewModels\ModifyViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
@@ -112,6 +114,12 @@
     <Compile Include="ViewModels\ServicesViewModel.cs" />
     <Compile Include="Views\AdministratorView.xaml.cs">
       <DependentUpon>AdministratorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BookView.xaml.cs">
+      <DependentUpon>BookView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClientView.xaml.cs">
+      <DependentUpon>ClientView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ModifyView.xaml.cs">
       <DependentUpon>ModifyView.xaml</DependentUpon>
@@ -153,6 +161,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\AdministratorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BookView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ClientView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

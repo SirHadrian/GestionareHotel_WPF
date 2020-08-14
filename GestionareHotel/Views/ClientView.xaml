@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="GestionareHotel.Views.ClientView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GestionareHotel.Views"
+             xmlns:views="clr-namespace:GestionareHotel.Views"
+             xmlns:viewmodels="clr-namespace:GestionareHotel.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="#04c582">
+
+
+    <UserControl.Resources>
+        <DataTemplate x:Name="ClientViewModel" DataType="{x:Type viewmodels:BookViewModel}">
+            <views:BookView DataContext="{Binding}"/>
+        </DataTemplate>
+    </UserControl.Resources>
+    
+
+    <Border Background="#2e3137" Margin="6" CornerRadius="10 0 0 10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <DockPanel Background="#24272b" Grid.Row="0" Grid.RowSpan="6" Grid.Column="3">
+                <StackPanel>
+                    <Button x:Name="BookBtn" Content="Book" Margin="6" Background="#545d6a" Foreground="White" FontSize="18" Click="BookBtn_Click"/>
+
+                </StackPanel>
+            </DockPanel>
+
+            <ContentControl Grid.Column="0" Content="{Binding}"></ContentControl>
+        </Grid>
+    </Border>
+</UserControl>
