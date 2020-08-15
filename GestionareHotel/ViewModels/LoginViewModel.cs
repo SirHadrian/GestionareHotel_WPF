@@ -1,5 +1,6 @@
 ﻿using GestionareHotel.Commands;
 using GestionareHotel.Models;
+using GestionareHotel.Views;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -20,6 +21,8 @@ namespace GestionareHotel.ViewModels
     class LoginViewModel: BaseViewModel
     {
         GestionareHotelEntities2 context;
+
+       
 
         public LoginViewModel()
         {
@@ -330,23 +333,45 @@ namespace GestionareHotel.ViewModels
             var builder = new EntityConnectionStringBuilder(conectionStringEF);
             var regularConnectionString = builder.ProviderConnectionString;
 
+
             using (SqlConnection con = new SqlConnection(regularConnectionString))
             {
                 con.Open();
-                using (SqlCommand cmd = new SqlCommand("Login", con))
+
+
+                using (SqlCommand cmd = new SqlCommand("isAdmin", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("@Username", UserName);
-                    cmd.Parameters.AddWithValue("@Password", Password);
 
-                    
 
                     int status = Convert.ToInt32(cmd.ExecuteScalar());
 
                     if (status == 1)
                     {
-                        MainWindow main = new MainWindow();
+                        HomePageViewModel.adminbtn = Visibility.Visible;
+                    }
+                    else
+                    {
+                        HomePageViewModel.adminbtn = Visibility.Collapsed;
+                        Debug.WriteLine("Not Admin");
+                    }
+                }
+
+
+
+                using (SqlCommand cmd = new SqlCommand("Login", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Username", UserName);
+                    cmd.Parameters.AddWithValue("@Password", Password);
+
+                    int status = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    if (status == 1)
+                    {
+                        Main main = new Main();
                         main.Show();
 
                         var win = Application.Current.MainWindow;
@@ -355,10 +380,9 @@ namespace GestionareHotel.ViewModels
                     else
                     {
                         MessageBox.Show("Invalid username or password!");
-                    }
-
-                    
+                    } 
                 }
+
                 con.Close();
             }
         }
@@ -378,7 +402,7 @@ namespace GestionareHotel.ViewModels
 
         public void Guest(object param)
         {
-            MainWindow main = new MainWindow();
+            Main main = new Main();
             main.Show();
 
             var win = Application.Current.MainWindow;

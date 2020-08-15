@@ -72,7 +72,7 @@
 
 
             <Button Content="  Load All Rezervations  " Command="{Binding LoadRezervationsCommand}" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="6" Margin="16" Background="#545d6a" Foreground="White" FontSize="18"></Button>
-            <Label Grid.Row="6" HorizontalAlignment="Left" Content="Rooms -> Offers -> Services" Foreground="White" FontSize="18" Margin="16"></Label>
+            <Label Grid.Row="6" HorizontalAlignment="Left" Content="Rooms -> Offers -> Services" Foreground="White" FontSize="18" Margin="10"></Label>
         </Grid>
     </Border>
 </UserControl>

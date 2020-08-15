@@ -22,26 +22,5 @@ namespace GestionareHotel
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-            DataContext = new HomePageViewModel();
-        }
-
-        private void AdminBtnClick(object sender, RoutedEventArgs e)
-        {
-            DataContext = new AdministratorViewModel();
-        }
-
-        private void HomeBtnClick(object sender, RoutedEventArgs e)
-        {
-            DataContext = new HomePageViewModel();
-        }
-
-        private void ClientBtnClick(object sender, RoutedEventArgs e)
-        {
-            DataContext = new ClientViewModel();
-        }
     }
 }
