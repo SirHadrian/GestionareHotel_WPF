@@ -14,6 +14,12 @@ namespace GestionareHotel.Models
     
     public partial class User
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public User()
+        {
+            this.Rezervations = new HashSet<Rezervation>();
+        }
+    
         public int ID { get; set; }
         public string UserName { get; set; }
         public string EmailAdress { get; set; }
@@ -21,5 +27,8 @@ namespace GestionareHotel.Models
         public bool Client { get; set; }
         public bool Angajat { get; set; }
         public bool Admin { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rezervation> Rezervations { get; set; }
     }
 }

@@ -12,19 +12,19 @@ namespace GestionareHotel.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Servicii
+    public partial class Rezervation
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Servicii()
-        {
-            this.Rezervations = new HashSet<Rezervation>();
-        }
-    
         public int ID { get; set; }
-        public string Descriere { get; set; }
-        public decimal Pret { get; set; }
+        public bool Active { get; set; }
+        public bool Paid { get; set; }
+        public int ID_User { get; set; }
+        public Nullable<int> ID_Room { get; set; }
+        public Nullable<int> ID_Offer { get; set; }
+        public Nullable<int> ID_Service { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rezervation> Rezervations { get; set; }
+        public virtual Offer Offer { get; set; }
+        public virtual Room Room { get; set; }
+        public virtual Servicii Servicii { get; set; }
+        public virtual User User { get; set; }
     }
 }

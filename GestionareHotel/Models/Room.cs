@@ -14,12 +14,21 @@ namespace GestionareHotel.Models
     
     public partial class Room
     {
-        public int Id_room { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Room()
+        {
+            this.Rezervations = new HashSet<Rezervation>();
+        }
+    
+        public int ID { get; set; }
         public string Denumire { get; set; }
         public string Descriere { get; set; }
         public int NumarCamere { get; set; }
         public int NumarPersoane { get; set; }
         public byte[] Imagine { get; set; }
         public decimal Pret { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rezervation> Rezervations { get; set; }
     }
 }

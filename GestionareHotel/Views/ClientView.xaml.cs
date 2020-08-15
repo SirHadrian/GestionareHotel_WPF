@@ -27,9 +27,15 @@ namespace GestionareHotel.Views
             DataContext = new BookViewModel();
         }
 
+
         private void BookBtn_Click(object sender, RoutedEventArgs e)
         {
             DataContext = new BookViewModel();
+        }
+
+        private void MyBooksBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

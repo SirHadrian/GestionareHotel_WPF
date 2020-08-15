@@ -13,10 +13,10 @@ namespace GestionareHotel.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class GestionareHotelEntities1 : DbContext
+    public partial class GestionareHotelEntities2 : DbContext
     {
-        public GestionareHotelEntities1()
-            : base("name=GestionareHotelEntities1")
+        public GestionareHotelEntities2()
+            : base("name=GestionareHotelEntities2")
         {
         }
     
@@ -25,9 +25,10 @@ namespace GestionareHotel.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Offer> Offers { get; set; }
+        public virtual DbSet<Rezervation> Rezervations { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
         public virtual DbSet<Servicii> Serviciis { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

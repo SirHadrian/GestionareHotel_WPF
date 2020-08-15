@@ -29,8 +29,8 @@
 
             <DataGrid x:Name="Offers" ItemsSource="{Binding OffersDataTable}" AutoGenerateColumns="False" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="4">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding Id_Offer}"/>
-                    <DataGridTextColumn Header="Offer" Binding="{Binding Offer}"/>
+                    <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
+                    <DataGridTextColumn Header="Offer" Binding="{Binding Offer_Description}"/>
                     <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
                     <DataGridTextColumn Header="StartDate" Binding="{Binding StartDate}"/>
                     <DataGridTextColumn Header="EndDate" Binding="{Binding EndDate}"/>
@@ -40,7 +40,7 @@
 
             <DataGrid x:Name="Rooms" ItemsSource="{Binding RoomsDataTable}" AutoGenerateColumns="False" Grid.Row="4" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="4">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Id" Binding="{Binding Id_room}"/>
+                    <DataGridTextColumn Header="Id" Binding="{Binding ID}"/>
                     <DataGridTextColumn Header="Denumire" Binding="{Binding Denumire}"/>
                     <DataGridTextColumn Header="Descriere" Binding="{Binding Descriere}"/>
                     <DataGridTextColumn Header="NumarCamere" Binding="{Binding NumarCamere}"/>

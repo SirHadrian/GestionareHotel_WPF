@@ -27,6 +27,7 @@
             <DockPanel Background="#24272b" Grid.Row="0" Grid.RowSpan="6" Grid.Column="3">
                 <StackPanel>
                     <Button x:Name="BookBtn" Content="Book" Margin="6" Background="#545d6a" Foreground="White" FontSize="18" Click="BookBtn_Click"/>
+                    <Button x:Name="MyBooksBtn" Content="MyBooks" Margin="6" Background="#545d6a" Foreground="White" FontSize="18" Click="MyBooksBtn_Click"/>
 
                 </StackPanel>
             </DockPanel>

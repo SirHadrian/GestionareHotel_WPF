@@ -4,11 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2ad6fec435e846c08a378d8918353dde" Name="Diagram1">
-        <EntityTypeShape EntityType="GestionareHotelModel.User" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionareHotelModel.Offer" Width="1.5" PointX="3.375" PointY="0.75" />
-        <EntityTypeShape EntityType="GestionareHotelModel.Room" Width="1.5" PointX="3.375" PointY="3.75" />
-        <EntityTypeShape EntityType="GestionareHotelModel.Servicii" Width="1.5" PointX="0.75" PointY="4.75" />
+      <Diagram DiagramId="5c627375f88e483988199697cbabac95" Name="Diagram1">
+        <EntityTypeShape EntityType="GestionareHotelModel.Offer" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionareHotelModel.Rezervation" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionareHotelModel.Room" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionareHotelModel.Servicii" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionareHotelModel.User" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <AssociationConnector Association="GestionareHotelModel.FK__Rezervati__ID_Of__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionareHotelModel.FK__Rezervati__ID_Ro__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionareHotelModel.FK__Rezervati__ID_Se__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionareHotelModel.FK__Rezervati__ID_Us__628FA481" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

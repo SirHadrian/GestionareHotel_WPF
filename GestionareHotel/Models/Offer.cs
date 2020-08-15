@@ -14,11 +14,20 @@ namespace GestionareHotel.Models
     
     public partial class Offer
     {
-        public int Id_Offer { get; set; }
-        public string Offer1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Offer()
+        {
+            this.Rezervations = new HashSet<Rezervation>();
+        }
+    
+        public int ID { get; set; }
+        public string Offer_Description { get; set; }
         public decimal Price { get; set; }
         public System.DateTime StartDate { get; set; }
         public System.DateTime EndDate { get; set; }
         public byte[] OfferImage { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rezervation> Rezervations { get; set; }
     }
 }
