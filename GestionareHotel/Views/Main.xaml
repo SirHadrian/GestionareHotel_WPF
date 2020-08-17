@@ -42,12 +42,12 @@
                 <StackPanel>
                     <Button Content="Home" Margin="6" Background="#545d6a" Foreground="White" FontSize="18" Click="HomeBtnClick"/>
                     <Button Visibility="{Binding AdminBtn}" Content="Admin" Margin="6" Background="#545d6a" Foreground="White" FontSize="18" Click="AdminBtnClick"/>
-                    <Button Visibility="{Binding AngajatBtn}" Content="Angajat" Margin="6" Background="#545d6a" Foreground="White" FontSize="18"/>
+                    <Button Visibility="{Binding AngajatBtn}" Content="Angajat" Margin="6" Background="#545d6a" Foreground="White" FontSize="18" Click="AngajatBtnClick"/>
                     <Button Content="Client" Margin="6" Background="#545d6a" Foreground="White" FontSize="18" Click="ClientBtnClick"/>
                 </StackPanel>
             </DockPanel>
 
-            <Label Grid.Row="7" Grid.Column="0" Content="temp" Margin="6" Foreground="LightGreen" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+            <Label Grid.Row="7" Grid.Column="0" Content="{Binding CurentUser}" Margin="2" Foreground="LightGreen" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
 
             <ContentControl Grid.Column="1" Grid.Row="0" Grid.RowSpan="7" Content="{Binding}"></ContentControl>
         </Grid>

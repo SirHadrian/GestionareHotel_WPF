@@ -5,25 +5,42 @@ using System.Configuration;
 using System.Data;
 using System.Data.Entity.Core.EntityClient;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace GestionareHotel.ViewModels
 {
-    class BookViewModel: BaseViewModel
+    class MyBooksViewModel: BaseViewModel
     {
         SqlDataAdapter sda;
-        SqlCommandBuilder scb;
+        //SqlCommandBuilder scb;
         DataTable dt;
 
+        List<string> _toPay = new List<string>();
+
+        int money = 0;
 
         #region Proprieties
         //==================
+        private string _money;
+        public string Money
+        {
+            get
+            {
+                return _money;
+            }
+            set
+            {
+                _money = value;
+                OnPropertyChanged("Money");
+            }
+        }
+
+
         private DataTable _roomsRezervationsDataTable = null;
         public DataTable RoomsRezervationsDataTable
         {
@@ -83,12 +100,18 @@ namespace GestionareHotel.ViewModels
                             INNER JOIN Users ON Rezervations.ID_User = Users.ID
                             INNER JOIN Rooms ON Rezervations.ID_Room = Rooms.ID
                             ;";
-                            
+
 
             sda = new SqlDataAdapter(querry, con);
             dt = new DataTable();
             sda.Fill(dt);
             RoomsRezervationsDataTable = dt;
+
+            foreach (DataRow dr in RoomsRezervationsDataTable.Rows)
+            {
+                string name = dr["Pret"].ToString();
+                _toPay.Add(name);
+            }
 
             //================================
 
@@ -112,6 +135,11 @@ namespace GestionareHotel.ViewModels
             sda.Fill(dt);
             OffersRezervationsDataTable = dt;
 
+            foreach (DataRow dr in OffersRezervationsDataTable.Rows)
+            {
+                string name = dr["Price"].ToString();
+                _toPay.Add(name);
+            }
             //===================================
 
             con = new SqlConnection(regularConnectionString);
@@ -132,7 +160,41 @@ namespace GestionareHotel.ViewModels
             sda.Fill(dt);
             ServicesRezervationsDataTable = dt;
 
+            foreach (DataRow dr in ServicesRezervationsDataTable.Rows)
+            {
+                string name = dr["Price"].ToString();
+                _toPay.Add(name);
+            }
 
+            List<string> temp = new List<string>();
+            
+            foreach (string st in _toPay)
+            {
+                string str = "";
+                for (int i = 0; i < st.Length; ++i) 
+                {
+                    
+                    if (st[i] != '.')
+                    {
+                        str = str + st[i];
+                       
+                    }
+                    else
+                    {
+                        temp.Add(str);
+                    }
+                }
+            }
+
+            _toPay.Clear();
+            _toPay = temp;
+            
+            foreach(string st in _toPay)
+            {
+                money += Int32.Parse(st);
+            }
+
+            Money = money.ToString();
             //Debug.WriteLine("Executat");
         }
 

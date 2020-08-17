@@ -27,7 +27,7 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Foreground="White" FontSize="40" Content="Wellcome to home page!"></Label>
+            <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Foreground="White" FontSize="40" Content="{Binding Welcome}"></Label>
 
         </Grid>
     </Border>

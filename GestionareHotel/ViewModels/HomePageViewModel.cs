@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GestionareHotel.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,13 +10,34 @@ namespace GestionareHotel.ViewModels
 {
     class HomePageViewModel: BaseViewModel
     {
-        public static Visibility adminbtn;
 
-
-
-        #region Visibility
+        #region Visibility User Type
         //========================
-        private Visibility _adminBtn = HomePageViewModel.adminbtn;
+        private string _welcome = "Welcome " + Props.curentuser + "!";
+        public string Welcome
+        {
+            get
+            {
+                return _welcome;
+            }
+        }
+
+        private string _curentUser = Props.curentuser;
+        public string CurentUser
+        {
+            get
+            {
+                return _curentUser;
+            }
+            set
+            {
+                _curentUser = value;
+                OnPropertyChanged("CurentUser");
+            }
+        }
+
+
+        private Visibility _adminBtn = Props.adminbtn;
         public Visibility AdminBtn
         {
             get
@@ -30,7 +52,7 @@ namespace GestionareHotel.ViewModels
         }
 
 
-        public Visibility _angajatBtn;
+        public Visibility _angajatBtn = Props.angajatbtn;
         public Visibility AngajatBtn
         {
             get

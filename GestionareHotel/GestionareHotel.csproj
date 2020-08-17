@@ -89,6 +89,7 @@
     <Compile Include="Models\Offer.cs">
       <DependentUpon>GestionareHotel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Props.cs" />
     <Compile Include="Models\Rezervation.cs">
       <DependentUpon>GestionareHotel.tt</DependentUpon>
     </Compile>
@@ -105,12 +106,15 @@
     <Compile Include="Models\UsersClass.cs" />
     <Compile Include="ViewModels\AdministratorViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\BookViewModel.cs" />
+    <Compile Include="ViewModels\BookOfferViewModel.cs" />
+    <Compile Include="ViewModels\BookRoomViewModel.cs" />
+    <Compile Include="ViewModels\BookServiceViewModel.cs" />
     <Compile Include="ViewModels\ClientViewModel.cs" />
     <Compile Include="ViewModels\CreateAccountViewModel.cs" />
     <Compile Include="ViewModels\ModifyViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MyBooksViewModel.cs" />
     <Compile Include="ViewModels\OffersViewModel.cs" />
     <Compile Include="ViewModels\PrivilegesViewModel.cs" />
     <Compile Include="ViewModels\RoomsViewModel.cs" />
@@ -118,8 +122,17 @@
     <Compile Include="Views\AdministratorView.xaml.cs">
       <DependentUpon>AdministratorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\BookView.xaml.cs">
-      <DependentUpon>BookView.xaml</DependentUpon>
+    <Compile Include="Views\AngajatView.xaml.cs">
+      <DependentUpon>AngajatView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BookOfferView.xaml.cs">
+      <DependentUpon>BookOfferView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BookRoomView.xaml.cs">
+      <DependentUpon>BookRoomView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BookServiceView.xaml.cs">
+      <DependentUpon>BookServiceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ClientView.xaml.cs">
       <DependentUpon>ClientView.xaml</DependentUpon>
@@ -141,6 +154,9 @@
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyBooksView.xaml.cs">
+      <DependentUpon>MyBooksView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OffersView.xaml.cs">
       <DependentUpon>OffersView.xaml</DependentUpon>
@@ -170,7 +186,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\BookView.xaml">
+    <Page Include="Views\AngajatView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BookOfferView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BookRoomView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BookServiceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -199,6 +227,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MyBooksView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

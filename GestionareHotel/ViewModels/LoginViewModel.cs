@@ -350,12 +350,34 @@ namespace GestionareHotel.ViewModels
 
                     if (status == 1)
                     {
-                        HomePageViewModel.adminbtn = Visibility.Visible;
+                        Props.adminbtn = Visibility.Visible;
+                        Props.angajatbtn = Visibility.Visible;
                     }
                     else
                     {
-                        HomePageViewModel.adminbtn = Visibility.Collapsed;
+                        Props.adminbtn = Visibility.Collapsed;
                         Debug.WriteLine("Not Admin");
+                    }
+                }
+
+
+                using (SqlCommand cmd = new SqlCommand("isAngajat", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@Username", UserName);
+
+
+                    int status = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    if (status == 1)
+                    {
+                        Props.angajatbtn = Visibility.Visible;
+                    }
+                    else
+                    {
+                        Props.angajatbtn = Visibility.Collapsed;
+                        Debug.WriteLine("Not Angajat");
                     }
                 }
 
@@ -371,6 +393,8 @@ namespace GestionareHotel.ViewModels
 
                     if (status == 1)
                     {
+                        Props.curentuser = UserName;
+
                         Main main = new Main();
                         main.Show();
 
@@ -402,6 +426,10 @@ namespace GestionareHotel.ViewModels
 
         public void Guest(object param)
         {
+            Props.curentuser = "Guest";
+            Props.adminbtn = Visibility.Collapsed;
+            Props.angajatbtn = Visibility.Collapsed;
+
             Main main = new Main();
             main.Show();
 

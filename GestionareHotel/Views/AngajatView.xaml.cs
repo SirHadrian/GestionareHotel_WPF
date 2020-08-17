@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace GestionareHotel.Views
 {
     /// <summary>
-    /// Interaction logic for BookView.xaml
+    /// Interaction logic for AngajatView.xaml
     /// </summary>
-    public partial class BookView : UserControl
+    public partial class AngajatView : UserControl
     {
-        public BookView()
+        public AngajatView()
         {
             InitializeComponent();
         }

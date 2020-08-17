@@ -11,8 +11,17 @@
 
 
     <UserControl.Resources>
-        <DataTemplate x:Name="ClientViewModel" DataType="{x:Type viewmodels:BookViewModel}">
-            <views:BookView DataContext="{Binding}"/>
+        <DataTemplate x:Name="BookRoomViewModel" DataType="{x:Type viewmodels:BookRoomViewModel}">
+            <views:BookRoomView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="BookOfferViewModel" DataType="{x:Type viewmodels:BookOfferViewModel}">
+            <views:BookOfferView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="BookServiceViewModel" DataType="{x:Type viewmodels:BookServiceViewModel}">
+            <views:BookServiceView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="MyBooksViewModel" DataType="{x:Type viewmodels:MyBooksViewModel}">
+            <views:MyBooksView DataContext="{Binding}"/>
         </DataTemplate>
     </UserControl.Resources>
     
@@ -26,8 +35,11 @@
 
             <DockPanel Background="#24272b" Grid.Row="0" Grid.RowSpan="6" Grid.Column="3">
                 <StackPanel>
-                    <Button x:Name="BookBtn" Content="Book" Margin="6" Background="#545d6a" Foreground="White" FontSize="18" Click="BookBtn_Click"/>
-                    <Button x:Name="MyBooksBtn" Content="MyBooks" Margin="6" Background="#545d6a" Foreground="White" FontSize="18" Click="MyBooksBtn_Click"/>
+                    <Button x:Name="BookRoomBtn" Content="BookRoom" Margin="6" Background="#545d6a" Foreground="White" FontSize="16" Click="BookRoomBtn_Click"/>
+                    <Button x:Name="BookOfferBtn" Content="BookOffer" Margin="6" Background="#545d6a" Foreground="White" FontSize="16" Click="BookOfferBtn_Click"/>
+                    <Button x:Name="BookServiceBtn" Content="BookService" Margin="6" Background="#545d6a" Foreground="White" FontSize="16" Click="BookServiceBtn_Click"/>
+
+                    <Button x:Name="MyBooksBtn" Content="MyBooks" Margin="6" Background="#545d6a" Foreground="White" FontSize="16" Click="MyBooksBtn_Click"/>
 
                 </StackPanel>
             </DockPanel>
