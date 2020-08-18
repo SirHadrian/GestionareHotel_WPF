@@ -19,7 +19,10 @@
             <DataTemplate x:Name="ClientViewModel" DataType="{x:Type viewmodels:ClientViewModel}">
                 <views:ClientView DataContext="{Binding}"/>
             </DataTemplate>
-        </Window.Resources>
+        <DataTemplate x:Name="AngajatViewModel" DataType="{x:Type viewmodels:AngajatViewModel}">
+            <views:AngajatView DataContext="{Binding}"/>
+        </DataTemplate>
+    </Window.Resources>
 
         <Grid>
             <Grid.ColumnDefinitions>

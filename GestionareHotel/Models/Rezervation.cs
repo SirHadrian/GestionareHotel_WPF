@@ -21,6 +21,7 @@ namespace GestionareHotel.Models
         public Nullable<int> ID_Room { get; set; }
         public Nullable<int> ID_Offer { get; set; }
         public Nullable<int> ID_Service { get; set; }
+        public bool Canceled { get; set; }
     
         public virtual Offer Offer { get; set; }
         public virtual Room Room { get; set; }

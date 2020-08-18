@@ -87,7 +87,7 @@ namespace GestionareHotel.ViewModels
 
             //==============================
             SqlConnection con = new SqlConnection(regularConnectionString);
-            string querry = @"SELECT Rezervations.ID AS ID, Active, Paid, 
+            string querry = @"SELECT Rezervations.ID AS ID, Active, Canceled, Paid, 
                             Users.UserName AS UserName,
                             Users.EmailAdress AS EmailAdress, 
                             Rooms.Denumire AS Camera, 
@@ -99,6 +99,7 @@ namespace GestionareHotel.ViewModels
                             FROM Rezervations 
                             INNER JOIN Users ON Rezervations.ID_User = Users.ID
                             INNER JOIN Rooms ON Rezervations.ID_Room = Rooms.ID
+                            WHERE Rezervations.Canceled = 0 AND Rezervations.Active = 1
                             ;";
 
 
@@ -116,7 +117,7 @@ namespace GestionareHotel.ViewModels
             //================================
 
             con = new SqlConnection(regularConnectionString);
-            querry = @"SELECT Rezervations.ID AS ID, Active, Paid, 
+            querry = @"SELECT Rezervations.ID AS ID, Active, Canceled, Paid, 
                             Users.UserName AS UserName,
                             Users.EmailAdress AS EmailAdress, 
                             Offers.Offer_Description AS Offer,
@@ -127,6 +128,7 @@ namespace GestionareHotel.ViewModels
                             FROM Rezervations 
                             INNER JOIN Users ON Rezervations.ID_User = Users.ID
                             INNER JOIN Offers ON Rezervations.ID_Offer = Offers.ID
+                            WHERE Rezervations.Canceled = 0 AND Rezervations.Active = 1
                             ;";
 
 
@@ -143,7 +145,7 @@ namespace GestionareHotel.ViewModels
             //===================================
 
             con = new SqlConnection(regularConnectionString);
-            querry = @"SELECT Rezervations.ID AS ID, Active, Paid, 
+            querry = @"SELECT Rezervations.ID AS ID, Active, Canceled, Paid, 
                             Users.UserName AS UserName,
                             Users.EmailAdress AS EmailAdress, 
                             Servicii.Descriere AS Service,
@@ -152,6 +154,7 @@ namespace GestionareHotel.ViewModels
                             FROM Rezervations 
                             INNER JOIN Users ON Rezervations.ID_User = Users.ID
                             INNER JOIN Servicii ON Rezervations.ID_Service = Servicii.ID
+                            WHERE Rezervations.Canceled = 0 AND Rezervations.Active = 1
                             ;";
 
 
@@ -188,13 +191,14 @@ namespace GestionareHotel.ViewModels
 
             _toPay.Clear();
             _toPay = temp;
+            money = 0;
             
             foreach(string st in _toPay)
             {
                 money += Int32.Parse(st);
             }
 
-            Money = money.ToString();
+            Money = "$" + money.ToString();
             //Debug.WriteLine("Executat");
         }
 

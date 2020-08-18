@@ -12,6 +12,8 @@ namespace GestionareHotel.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class GestionareHotelEntities2 : DbContext
     {
@@ -30,5 +32,238 @@ namespace GestionareHotel.Models
         public virtual DbSet<Room> Rooms { get; set; }
         public virtual DbSet<Servicii> Serviciis { get; set; }
         public virtual DbSet<User> Users { get; set; }
+    
+        public virtual int AddOffer(string offer, Nullable<decimal> price, Nullable<System.DateTime> from, Nullable<System.DateTime> to, byte[] img)
+        {
+            var offerParameter = offer != null ?
+                new ObjectParameter("offer", offer) :
+                new ObjectParameter("offer", typeof(string));
+    
+            var priceParameter = price.HasValue ?
+                new ObjectParameter("price", price) :
+                new ObjectParameter("price", typeof(decimal));
+    
+            var fromParameter = from.HasValue ?
+                new ObjectParameter("from", from) :
+                new ObjectParameter("from", typeof(System.DateTime));
+    
+            var toParameter = to.HasValue ?
+                new ObjectParameter("to", to) :
+                new ObjectParameter("to", typeof(System.DateTime));
+    
+            var imgParameter = img != null ?
+                new ObjectParameter("img", img) :
+                new ObjectParameter("img", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddOffer", offerParameter, priceParameter, fromParameter, toParameter, imgParameter);
+        }
+    
+        public virtual int AddRoom(string denumire, string descriere, Nullable<int> numarcamere, Nullable<int> numarpersoane, byte[] imagine, Nullable<decimal> pret)
+        {
+            var denumireParameter = denumire != null ?
+                new ObjectParameter("denumire", denumire) :
+                new ObjectParameter("denumire", typeof(string));
+    
+            var descriereParameter = descriere != null ?
+                new ObjectParameter("descriere", descriere) :
+                new ObjectParameter("descriere", typeof(string));
+    
+            var numarcamereParameter = numarcamere.HasValue ?
+                new ObjectParameter("numarcamere", numarcamere) :
+                new ObjectParameter("numarcamere", typeof(int));
+    
+            var numarpersoaneParameter = numarpersoane.HasValue ?
+                new ObjectParameter("numarpersoane", numarpersoane) :
+                new ObjectParameter("numarpersoane", typeof(int));
+    
+            var imagineParameter = imagine != null ?
+                new ObjectParameter("imagine", imagine) :
+                new ObjectParameter("imagine", typeof(byte[]));
+    
+            var pretParameter = pret.HasValue ?
+                new ObjectParameter("pret", pret) :
+                new ObjectParameter("pret", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddRoom", denumireParameter, descriereParameter, numarcamereParameter, numarpersoaneParameter, imagineParameter, pretParameter);
+        }
+    
+        public virtual int AddServ(string descriere, Nullable<decimal> pret)
+        {
+            var descriereParameter = descriere != null ?
+                new ObjectParameter("descriere", descriere) :
+                new ObjectParameter("descriere", typeof(string));
+    
+            var pretParameter = pret.HasValue ?
+                new ObjectParameter("pret", pret) :
+                new ObjectParameter("pret", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddServ", descriereParameter, pretParameter);
+        }
+    
+        public virtual int DeleteOffer(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteOffer", idParameter);
+        }
+    
+        public virtual int DeleteRoom(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteRoom", idParameter);
+        }
+    
+        public virtual int DeleteServ(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteServ", idParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> hasRezervation(string userName)
+        {
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("hasRezervation", userNameParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> isAdmin(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("isAdmin", usernameParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> isAngajat(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("isAngajat", usernameParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> isUserNameAndEmail(string username, string email)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("isUserNameAndEmail", usernameParameter, emailParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> Login(string username, string password)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Login", usernameParameter, passwordParameter);
+        }
+    
+        public virtual int newRezervation(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("newRezervation", usernameParameter);
+        }
+    
+        public virtual int NewUser(string username, string email, string password, Nullable<bool> client, Nullable<bool> angajat, Nullable<bool> admin)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            var clientParameter = client.HasValue ?
+                new ObjectParameter("client", client) :
+                new ObjectParameter("client", typeof(bool));
+    
+            var angajatParameter = angajat.HasValue ?
+                new ObjectParameter("angajat", angajat) :
+                new ObjectParameter("angajat", typeof(bool));
+    
+            var adminParameter = admin.HasValue ?
+                new ObjectParameter("admin", admin) :
+                new ObjectParameter("admin", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NewUser", usernameParameter, emailParameter, passwordParameter, clientParameter, angajatParameter, adminParameter);
+        }
+    
+        public virtual int updateRezervationsOffers(string username, Nullable<int> idOffer)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var idOfferParameter = idOffer.HasValue ?
+                new ObjectParameter("idOffer", idOffer) :
+                new ObjectParameter("idOffer", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("updateRezervationsOffers", usernameParameter, idOfferParameter);
+        }
+    
+        public virtual int updateRezervationsRooms(string username, Nullable<int> idRoom)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var idRoomParameter = idRoom.HasValue ?
+                new ObjectParameter("idRoom", idRoom) :
+                new ObjectParameter("idRoom", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("updateRezervationsRooms", usernameParameter, idRoomParameter);
+        }
+    
+        public virtual int updateRezervationsService(string username, Nullable<int> idService)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var idServiceParameter = idService.HasValue ?
+                new ObjectParameter("idService", idService) :
+                new ObjectParameter("idService", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("updateRezervationsService", usernameParameter, idServiceParameter);
+        }
+    
+        public virtual int UserDel(string userDel)
+        {
+            var userDelParameter = userDel != null ?
+                new ObjectParameter("userDel", userDel) :
+                new ObjectParameter("userDel", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UserDel", userDelParameter);
+        }
     }
 }

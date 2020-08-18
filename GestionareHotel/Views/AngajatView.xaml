@@ -16,6 +16,33 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <DataGrid x:Name="ServicesRezeervations" ItemsSource="{Binding RezervationsDataTable}" AutoGenerateColumns="False" Grid.Row="1" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="12">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding ID}"/>
+                    <DataGridCheckBoxColumn Header="Active" Binding="{Binding Active}"/>
+                    <DataGridCheckBoxColumn Header="Canceled" Binding="{Binding Canceled}"/>
+                    <DataGridCheckBoxColumn Header="Paid" Binding="{Binding Paid}"/>
+                    <DataGridTextColumn Header="ID_User" Binding="{Binding ID_User}"/>
+                    <DataGridTextColumn Header="ID_Room" Binding="{Binding ID_Room}"/>
+                    <DataGridTextColumn Header="ID_Offer" Binding="{Binding ID_Offer}"/>
+                    <DataGridTextColumn Header="ID_Service" Binding="{Binding ID_Service}"/>
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Label Content="Rezervations" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Foreground="White" FontSize="32"></Label>
+            <Button Command="{Binding LoadRezervationsCommand}" Content="   Load   " Grid.Column="0" Grid.Row="6" Margin="12" HorizontalAlignment="Center" Background="#545d6a" Foreground="White" FontSize="18"></Button>
+            <Button Command="{Binding UpdateRezervationsCommand}" Content="  Update  " Grid.Column="1" Grid.Row="6" Margin="12" HorizontalAlignment="Center" Background="#545d6a" Foreground="White" FontSize="18"></Button>
+
         </Grid>
     </Border>
 </UserControl>

@@ -3,9 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:GestionareHotel.Views"
+             xmlns:local="clr-namespace:GestionareHotel.Views" xmlns:i="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="620" Background="#04c582">
+
+
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="clBr" Color="Red" />
+    </UserControl.Resources>
+
 
     <Border Background="#2e3137" CornerRadius="10 0 0 10">
         <Grid>
@@ -22,55 +28,81 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
-            <DataGrid x:Name="RoomsRezeervations" ItemsSource="{Binding RoomsRezervationsDataTable}" AutoGenerateColumns="False" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Margin="12" IsReadOnly="True">
+            <DataGrid x:Name="RoomsRezeervations" ItemsSource="{Binding RoomsRezervationsDataTable}" AutoGenerateColumns="False" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Margin="12">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
-                    <DataGridCheckBoxColumn Header="Active" Binding="{Binding Active}" />
-                    <DataGridCheckBoxColumn Header="Paid" Binding="{Binding Paid}" />
-                    <DataGridTextColumn Header="UserName" Binding="{Binding UserName}"/>
-                    <DataGridTextColumn Header="EmailAdress" Binding="{Binding EmailAdress}"/>
-                    <DataGridTextColumn Header="Camera" Binding="{Binding Camera}"/>
-                    <DataGridTextColumn Header="Detalii" Binding="{Binding Detalii}"/>
-                    <DataGridTextColumn Header="NrPersoane" Binding="{Binding NrPersoane}"/>
-                    <DataGridTextColumn Header="NrCamere" Binding="{Binding NrCamere}"/>
-                    <DataGridTextColumn Header="Pret" Binding="{Binding Pret}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="ID" Binding="{Binding ID}"/>
+                    <DataGridCheckBoxColumn IsReadOnly="True" Header="Active" Binding="{Binding Active}" />
+                    <DataGridCheckBoxColumn IsReadOnly="False" Header="Canceled" Binding="{Binding Canceled}">
+                        <DataGridCheckBoxColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Background" 
+                                Value="{StaticResource clBr}" />
+                            </Style>
+                        </DataGridCheckBoxColumn.CellStyle>
+                    </DataGridCheckBoxColumn>
+                    <DataGridCheckBoxColumn IsReadOnly="True" Header="Paid" Binding="{Binding Paid}" />
+                    <DataGridTextColumn IsReadOnly="True" Header="UserName" Binding="{Binding UserName}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="EmailAdress" Binding="{Binding EmailAdress}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Camera" Binding="{Binding Camera}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Detalii" Binding="{Binding Detalii}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="NrPersoane" Binding="{Binding NrPersoane}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="NrCamere" Binding="{Binding NrCamere}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Pret" Binding="{Binding Pret}"/>
 
 
                 </DataGrid.Columns>
             </DataGrid>
 
 
-            <DataGrid x:Name="OffersRezeervations" ItemsSource="{Binding OffersRezervationsDataTable}" AutoGenerateColumns="False" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Margin="12" IsReadOnly="True">
+            <DataGrid x:Name="OffersRezeervations" ItemsSource="{Binding OffersRezervationsDataTable}" AutoGenerateColumns="False" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Margin="12">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
-                    <DataGridCheckBoxColumn Header="Active" Binding="{Binding Active}" />
-                    <DataGridCheckBoxColumn Header="Paid" Binding="{Binding Paid}" />
-                    <DataGridTextColumn Header="UserName" Binding="{Binding UserName}"/>
-                    <DataGridTextColumn Header="EmailAdress" Binding="{Binding EmailAdress}"/>
-                    <DataGridTextColumn Header="Offer" Binding="{Binding Offer}"/>
-                    <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
-                    <DataGridTextColumn Header="StartDate" Binding="{Binding StartDate}"/>
-                    <DataGridTextColumn Header="EndDate" Binding="{Binding EndDate}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="ID" Binding="{Binding ID}"/>
+                    <DataGridCheckBoxColumn IsReadOnly="True" Header="Active" Binding="{Binding Active}" />
+                    <DataGridCheckBoxColumn IsReadOnly="False" Header="Canceled" Binding="{Binding Canceled}">
+                        <DataGridCheckBoxColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Background" 
+                                Value="{StaticResource clBr}" />
+                            </Style>
+                        </DataGridCheckBoxColumn.CellStyle>
+                    </DataGridCheckBoxColumn>
+                    <DataGridCheckBoxColumn IsReadOnly="True" Header="Paid" Binding="{Binding Paid}" />
+                    <DataGridTextColumn IsReadOnly="True" Header="UserName" Binding="{Binding UserName}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="EmailAdress" Binding="{Binding EmailAdress}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Offer" Binding="{Binding Offer}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Price" Binding="{Binding Price}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="StartDate" Binding="{Binding StartDate}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="EndDate" Binding="{Binding EndDate}"/>
 
                 </DataGrid.Columns>
             </DataGrid>
 
 
-            <DataGrid x:Name="ServicesRezeervations" ItemsSource="{Binding ServicesRezervationsDataTable}" AutoGenerateColumns="False" Grid.Row="4" Grid.RowSpan="2" Grid.Column="0" Margin="12" IsReadOnly="True">
+            <DataGrid x:Name="ServicesRezeervations" ItemsSource="{Binding ServicesRezervationsDataTable}" AutoGenerateColumns="False" Grid.Row="4" Grid.RowSpan="2" Grid.Column="0" Margin="12">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
-                    <DataGridCheckBoxColumn Header="Active" Binding="{Binding Active}" />
-                    <DataGridCheckBoxColumn Header="Paid" Binding="{Binding Paid}" />
-                    <DataGridTextColumn Header="UserName" Binding="{Binding UserName}"/>
-                    <DataGridTextColumn Header="EmailAdress" Binding="{Binding EmailAdress}"/>
-                    <DataGridTextColumn Header="Service" Binding="{Binding Service}"/>
-                    <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="ID" Binding="{Binding ID}"/>
+                    <DataGridCheckBoxColumn IsReadOnly="True" Header="Active" Binding="{Binding Active}" />
+                    <DataGridCheckBoxColumn IsReadOnly="False" Header="Canceled" Binding="{Binding Canceled}">
+                        <DataGridCheckBoxColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Background" 
+                                Value="{StaticResource clBr}" />
+                            </Style>
+                        </DataGridCheckBoxColumn.CellStyle>
+
+                    </DataGridCheckBoxColumn>
+                    <DataGridCheckBoxColumn IsReadOnly="True" Header="Paid" Binding="{Binding Paid}" />
+                    <DataGridTextColumn IsReadOnly="True" Header="UserName" Binding="{Binding UserName}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="EmailAdress" Binding="{Binding EmailAdress}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Service" Binding="{Binding Service}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Price" Binding="{Binding Price}"/>
 
                 </DataGrid.Columns>
             </DataGrid>
 
 
             <Button Content="  Load All Rezervations  " Command="{Binding LoadRezervationsCommand}" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="6" Margin="16" Background="#545d6a" Foreground="White" FontSize="18"></Button>
+
             <Label Grid.Row="6" HorizontalAlignment="Left" Content="Rooms -> Offers -> Services || Total: " Foreground="White" FontSize="18" Margin="10"></Label>
 
             <Label Grid.Row="6" Content="{Binding Money}" HorizontalAlignment="Center" Foreground="White" FontSize="18" Margin="80 10 10 10"></Label>

@@ -63,7 +63,7 @@ namespace GestionareHotel.ViewModels
 
 
             SqlConnection con = new SqlConnection(regularConnectionString);
-            string querry = "SELECT ID, Offer_Description, Price, StartDate, EndDate FROM Offers;";
+            string querry = "SELECT ID, Offer_Description, Price, StartDate, EndDate FROM Offers WHERE StartDate <= GETDATE() AND EndDate >= GETDATE();";
 
             sda = new SqlDataAdapter(querry, con);
             dt = new DataTable();

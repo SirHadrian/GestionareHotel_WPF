@@ -44,7 +44,7 @@ namespace GestionareHotel.Views
 
         private void AngajatBtnClick(object sender, RoutedEventArgs e)
         {
-
+            DataContext = new AngajatViewModel();
         }
     }
 }

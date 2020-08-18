@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="GestionareHotelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="GestionareHotelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Offers">
           <Key>
             <PropertyRef Name="ID" />
@@ -20,8 +20,9 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Canceled" Type="bit" Nullable="false" />
           <Property Name="Paid" Type="bit" Nullable="false" />
           <Property Name="ID_User" Type="int" Nullable="false" />
           <Property Name="ID_Room" Type="int" />
@@ -108,6 +109,77 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="AddOffer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="offer" Type="varchar" Mode="In" />
+          <Parameter Name="price" Type="money" Mode="In" />
+          <Parameter Name="from" Type="date" Mode="In" />
+          <Parameter Name="to" Type="date" Mode="In" />
+          <Parameter Name="img" Type="image" Mode="In" />
+        </Function>
+        <Function Name="AddRoom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="denumire" Type="varchar" Mode="In" />
+          <Parameter Name="descriere" Type="varchar" Mode="In" />
+          <Parameter Name="numarcamere" Type="int" Mode="In" />
+          <Parameter Name="numarpersoane" Type="int" Mode="In" />
+          <Parameter Name="imagine" Type="image" Mode="In" />
+          <Parameter Name="pret" Type="money" Mode="In" />
+        </Function>
+        <Function Name="AddServ" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="descriere" Type="varchar" Mode="In" />
+          <Parameter Name="pret" Type="money" Mode="In" />
+        </Function>
+        <Function Name="DeleteOffer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteRoom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteServ" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="hasRezervation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="isAdmin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Username" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="isAngajat" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Username" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="isUserNameAndEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Username" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="newRezervation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="NewUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+          <Parameter Name="client" Type="bit" Mode="In" />
+          <Parameter Name="angajat" Type="bit" Mode="In" />
+          <Parameter Name="admin" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="updateRezervationsOffers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="idOffer" Type="int" Mode="In" />
+        </Function>
+        <Function Name="updateRezervationsRooms" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="idRoom" Type="int" Mode="In" />
+        </Function>
+        <Function Name="updateRezervationsService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="idService" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UserDel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userDel" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="GestionareHotelModelStoreContainer">
           <EntitySet Name="Offers" EntityType="Self.Offers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rezervations" EntityType="Self.Rezervations" Schema="dbo" store:Type="Tables" />
@@ -131,8 +203,7 @@
             <End Role="Rezervations" EntitySet="Rezervations" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GestionareHotelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -163,6 +234,7 @@
           <NavigationProperty Name="Room" Relationship="Self.FK__Rezervati__ID_Ro__6383C8BA" FromRole="Rezervations" ToRole="Rooms" />
           <NavigationProperty Name="Servicii" Relationship="Self.FK__Rezervati__ID_Se__6477ECF3" FromRole="Rezervations" ToRole="Servicii" />
           <NavigationProperty Name="User" Relationship="Self.FK__Rezervati__ID_Us__628FA481" FromRole="Rezervations" ToRole="Users" />
+          <Property Name="Canceled" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Room">
           <Key>
@@ -269,6 +341,77 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Rezervations" EntitySet="Rezervations" />
           </AssociationSet>
+          <FunctionImport Name="AddOffer">
+            <Parameter Name="offer" Mode="In" Type="String" />
+            <Parameter Name="price" Mode="In" Type="Decimal" />
+            <Parameter Name="from" Mode="In" Type="DateTime" />
+            <Parameter Name="to" Mode="In" Type="DateTime" />
+            <Parameter Name="img" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="AddRoom">
+            <Parameter Name="denumire" Mode="In" Type="String" />
+            <Parameter Name="descriere" Mode="In" Type="String" />
+            <Parameter Name="numarcamere" Mode="In" Type="Int32" />
+            <Parameter Name="numarpersoane" Mode="In" Type="Int32" />
+            <Parameter Name="imagine" Mode="In" Type="Binary" />
+            <Parameter Name="pret" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="AddServ">
+            <Parameter Name="descriere" Mode="In" Type="String" />
+            <Parameter Name="pret" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteOffer">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteRoom">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteServ">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="hasRezervation" ReturnType="Collection(Int32)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="isAdmin" ReturnType="Collection(Int32)">
+            <Parameter Name="Username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="isAngajat" ReturnType="Collection(Int32)">
+            <Parameter Name="Username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="isUserNameAndEmail" ReturnType="Collection(Int32)">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Login" ReturnType="Collection(Int32)">
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="newRezervation">
+            <Parameter Name="username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="NewUser">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="client" Mode="In" Type="Boolean" />
+            <Parameter Name="angajat" Mode="In" Type="Boolean" />
+            <Parameter Name="admin" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="updateRezervationsOffers">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="idOffer" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="updateRezervationsRooms">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="idRoom" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="updateRezervationsService">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="idService" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UserDel">
+            <Parameter Name="userDel" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -291,6 +434,7 @@
           <EntitySetMapping Name="Rezervations">
             <EntityTypeMapping TypeName="GestionareHotelModel.Rezervation">
               <MappingFragment StoreEntitySet="Rezervations">
+                <ScalarProperty Name="Canceled" ColumnName="Canceled" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="Paid" ColumnName="Paid" />
@@ -336,6 +480,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddOffer" FunctionName="GestionareHotelModel.Store.AddOffer" />
+          <FunctionImportMapping FunctionImportName="AddRoom" FunctionName="GestionareHotelModel.Store.AddRoom" />
+          <FunctionImportMapping FunctionImportName="AddServ" FunctionName="GestionareHotelModel.Store.AddServ" />
+          <FunctionImportMapping FunctionImportName="DeleteOffer" FunctionName="GestionareHotelModel.Store.DeleteOffer" />
+          <FunctionImportMapping FunctionImportName="DeleteRoom" FunctionName="GestionareHotelModel.Store.DeleteRoom" />
+          <FunctionImportMapping FunctionImportName="DeleteServ" FunctionName="GestionareHotelModel.Store.DeleteServ" />
+          <FunctionImportMapping FunctionImportName="hasRezervation" FunctionName="GestionareHotelModel.Store.hasRezervation" />
+          <FunctionImportMapping FunctionImportName="isAdmin" FunctionName="GestionareHotelModel.Store.isAdmin" />
+          <FunctionImportMapping FunctionImportName="isAngajat" FunctionName="GestionareHotelModel.Store.isAngajat" />
+          <FunctionImportMapping FunctionImportName="isUserNameAndEmail" FunctionName="GestionareHotelModel.Store.isUserNameAndEmail" />
+          <FunctionImportMapping FunctionImportName="Login" FunctionName="GestionareHotelModel.Store.Login" />
+          <FunctionImportMapping FunctionImportName="newRezervation" FunctionName="GestionareHotelModel.Store.newRezervation" />
+          <FunctionImportMapping FunctionImportName="NewUser" FunctionName="GestionareHotelModel.Store.NewUser" />
+          <FunctionImportMapping FunctionImportName="updateRezervationsOffers" FunctionName="GestionareHotelModel.Store.updateRezervationsOffers" />
+          <FunctionImportMapping FunctionImportName="updateRezervationsRooms" FunctionName="GestionareHotelModel.Store.updateRezervationsRooms" />
+          <FunctionImportMapping FunctionImportName="updateRezervationsService" FunctionName="GestionareHotelModel.Store.updateRezervationsService" />
+          <FunctionImportMapping FunctionImportName="UserDel" FunctionName="GestionareHotelModel.Store.UserDel" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

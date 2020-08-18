@@ -27,8 +27,13 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Foreground="White" FontSize="40" Content="{Binding Welcome}"></Label>
+            <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" Foreground="White" FontSize="40" Content="{Binding Welcome}"></Label>
+            <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Grid.ColumnSpan="4" Foreground="White" FontSize="40" Content="Hotel"></Label>
 
+            <Image Source="pack://application:,,,/Images/1.jpg" x:Name="Hotel_1" Grid.Row="3" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="16"></Image>
+            <Image Source="pack://application:,,,/Images/2.jpg" x:Name="Hotel_2" Grid.Row="3" Grid.RowSpan="3" Grid.Column="3" Grid.ColumnSpan="3" Margin="16"></Image>
+
+            
         </Grid>
     </Border>
 </UserControl>
