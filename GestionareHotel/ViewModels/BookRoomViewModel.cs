@@ -64,7 +64,7 @@ namespace GestionareHotel.ViewModels
 
 
             SqlConnection con = new SqlConnection(regularConnectionString);
-            string querry = "SELECT ID, Denumire, Descriere, NumarCamere, NumarPersoane, Pret FROM Rooms;";
+            string querry = "SELECT ID, Imagine AS Image, Denumire, Descriere, NumarCamere, NumarPersoane, Pret FROM Rooms;";
 
             sda = new SqlDataAdapter(querry, con);
             dt = new DataTable();

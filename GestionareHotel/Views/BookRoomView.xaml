@@ -29,6 +29,13 @@
             <DataGrid x:Name="Rooms" ItemsSource="{Binding RoomsDataTable}" AutoGenerateColumns="False" Grid.Row="1" Grid.RowSpan="4" Grid.Column="0" Grid.ColumnSpan="3" Margin="12">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id" Binding="{Binding ID}"/>
+                    <DataGridTemplateColumn Width="60" Header="Image">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Image}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTextColumn Header="Denumire" Binding="{Binding Denumire}"/>
                     <DataGridTextColumn Header="Descriere" Binding="{Binding Descriere}"/>
                     <DataGridTextColumn Header="NumarCamere" Binding="{Binding NumarCamere}"/>

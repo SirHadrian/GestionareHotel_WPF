@@ -171,7 +171,7 @@ namespace GestionareHotel.ViewModels
 
 
             SqlConnection con = new SqlConnection(regularConnectionString);
-            string querry = "SELECT ID, Denumire, Descriere, NumarCamere, NumarPersoane, Pret FROM Rooms;";
+            string querry = "SELECT ID, Imagine AS Image, Denumire, Descriere, NumarCamere, NumarPersoane, Pret FROM Rooms;";
 
             sda = new SqlDataAdapter(querry, con);
             dt = new DataTable();
@@ -202,7 +202,7 @@ namespace GestionareHotel.ViewModels
 
 
             SqlConnection con = new SqlConnection(regularConnectionString);
-            string querry = "SELECT ID, Offer_Description, Price, StartDate, EndDate FROM Offers;";
+            string querry = "SELECT ID, OfferImage AS Image, Offer_Description, Price, StartDate, EndDate FROM Offers;";
 
             sda = new SqlDataAdapter(querry, con);
             dt = new DataTable();
