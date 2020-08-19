@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:GestionareHotel.Views"
+             xmlns:local="clr-namespace:GestionareHotel.Views" xmlns:validationrules="clr-namespace:GestionareHotel.Models"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="620" Background="#04c582">
 
@@ -28,7 +28,15 @@
             <Label Content="Service" Grid.Row="0" Grid.Column="0" Foreground="White" FontSize="24" Margin="10" HorizontalAlignment="Center"></Label>
             <TextBox Text="{Binding Service}" Grid.Row="0" Grid.Column="1" Margin="16"></TextBox>
             <Label Content="Price" Grid.Row="1" Grid.Column="0" Foreground="White" FontSize="24" Margin="10" HorizontalAlignment="Center"></Label>
-            <TextBox Text="{Binding Price}" Grid.Row="1" Grid.Column="1" Margin="16 16 200 16"></TextBox>
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="16 16 200 16">
+                <TextBox.Text>
+                    <Binding Path="Price">
+                        <Binding.ValidationRules>
+                            <validationrules:NumberValidationRuleDouble/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
 
             <Button Command="{Binding AddServiceCommand}" Grid.Column="1" Grid.Row="1" Content="  Add Service  " Margin="14" HorizontalAlignment="Right" Background="#545d6a" Foreground="White" FontSize="18"></Button>
 
@@ -42,7 +50,15 @@
             </DataGrid>
 
             <Label Content="Delete Service" Grid.Row="3" Grid.Column="1" Foreground="White" FontSize="24" Margin="10" HorizontalAlignment="Center"></Label>
-            <TextBox Text="{Binding DeleteServiceID}" Grid.Row="4" Grid.Column="1" Margin="16 16 200 16"></TextBox>
+            <TextBox Grid.Row="4" Grid.Column="1" Margin="16 16 200 16">
+                <TextBox.Text>
+                    <Binding Path="DeleteServiceID">
+                        <Binding.ValidationRules>
+                            <validationrules:NumberValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <Button Command="{Binding DeleteServiceCommand}" Content="  Delete  " Grid.Column="1" Grid.Row="4" Margin="14" HorizontalAlignment="Right" Background="#545d6a" Foreground="White" FontSize="18"></Button>
 
             <Button Command="{Binding LoadServicesCommand}" Content="  Load Service  " Grid.Column="0" Grid.Row="6" Margin="14" HorizontalAlignment="Left" Background="#545d6a" Foreground="White" FontSize="18"></Button>

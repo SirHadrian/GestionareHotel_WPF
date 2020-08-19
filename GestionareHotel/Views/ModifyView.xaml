@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:GestionareHotel.Views"
+             xmlns:local="clr-namespace:GestionareHotel.Views" xmlns:validationrules="clr-namespace:GestionareHotel.Models"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="620" Background="#04c582">
 
@@ -70,10 +70,26 @@
             <Button Command="{Binding LoadRoomsCommand}" Background="#545d6a" Foreground="White" FontSize="16" Content="  Load Rooms  " Margin="10" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="7"></Button>
             <Button Command="{Binding UpdateRoomsCommand}" Content=" Update Rooms " Grid.Column="0" Grid.Row="7" Margin="10" HorizontalAlignment="Right" Background="#545d6a" Foreground="White" FontSize="18"></Button>
             
-            <TextBox Text="{Binding DeleteOfferID}" Grid.Column="1" Grid.Row="3" Margin="50 12 200 12"></TextBox>
+            <TextBox Grid.Column="1" Grid.Row="3" Margin="50 12 200 12">
+                <TextBox.Text>
+                    <Binding Path="DeleteOfferID">
+                        <Binding.ValidationRules>
+                            <validationrules:NumberValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <Button Command="{Binding DeleteOfferCommand}" Background="#545d6a" Foreground="White" FontSize="16" Content="Delete" Grid.Column="1" Grid.Row="3" Margin="10" HorizontalAlignment="Center"></Button>
 
-            <TextBox Text="{Binding DeleteRoomID}" Grid.Column="1" Grid.Row="7" Margin="50 12 200 12"></TextBox>
+            <TextBox Grid.Column="1" Grid.Row="7" Margin="50 12 200 12">
+                <TextBox.Text>
+                    <Binding Path="DeleteRoomID">
+                        <Binding.ValidationRules>
+                            <validationrules:NumberValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <Button Command="{Binding DeleteRoomCommand}" Background="#545d6a" Foreground="White" FontSize="16" Content="Delete" Grid.Column="1" Grid.Row="7" Margin="10" HorizontalAlignment="Center"></Button>
 
         </Grid>

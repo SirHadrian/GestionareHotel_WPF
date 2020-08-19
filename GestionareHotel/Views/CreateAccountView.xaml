@@ -19,10 +19,10 @@
             <TextBox Text="{Binding EmailAdress}" x:Name="email_box" Background="#545d6a" FontSize="18" Margin="2" ></TextBox>
 
             <Label x:Name="PasswardLabel" Content="Password" Foreground="White" FontSize="18"/>
-            <TextBox Text="{Binding Password_1}" MaxLength="5" x:Name="Passward_Box" Background="#545d6a" Margin="2" FontSize="18" ></TextBox>
+            <TextBox Text="{Binding Password_1}" MaxLength="10" x:Name="Passward_Box" Background="#545d6a" Margin="2" FontSize="18" ></TextBox>
 
             <Label x:Name="ConfirmPassword" Content="Confirm Password" Foreground="White" FontSize="18"/>
-            <TextBox Text="{Binding Password_2}" x:Name="Retype_Passward_Box" MaxLength="5" Background="#545d6a" Margin="2" FontSize="18" ></TextBox>
+            <TextBox Text="{Binding Password_2}" x:Name="Retype_Passward_Box" MaxLength="10" Background="#545d6a" Margin="2" FontSize="18" ></TextBox>
 
             <Button Command="{Binding CreateAccountCommand}" x:Name="Submit" Margin="60, 30" Background="#545d6a" Foreground="White" FontSize="18" Content="Create"></Button>
             <Button Command="{Binding BackCommand}" x:Name="Back" Visibility="Visible" Content="&lt;" HorizontalAlignment="Left" Margin="0 -736 0 0" Background="#545d6a" Foreground="White" FontSize="18" Width="30" Height="30"/>

@@ -1,4 +1,5 @@
 ﻿using GestionareHotel.Commands;
+using GestionareHotel.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

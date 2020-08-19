@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GestionareHotel.Views"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:validationrules="clr-namespace:GestionareHotel.Models"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="620" Background="#04c582">
 
@@ -37,7 +37,15 @@
 
 
             <TextBox Text="{Binding Offer}" Grid.Row="1" Grid.Column="1" Margin="14" Grid.ColumnSpan="2"></TextBox>
-            <TextBox Text="{Binding Price}" Grid.Row="2" Grid.Column="1" Margin="14 14 100 14"></TextBox>
+            <TextBox Grid.Row="2" Grid.Column="1" Margin="14 14 100 14">
+                <TextBox.Text>
+                    <Binding Path="Price">
+                        <Binding.ValidationRules>
+                            <validationrules:NumberValidationRuleDouble/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <DatePicker SelectedDate="{Binding StartDate}" Grid.Row="3" Grid.Column="1" Margin="14"></DatePicker>
             <DatePicker SelectedDate="{Binding EndDate}" Grid.Row="4" Grid.Column="1" Margin="14"></DatePicker>
             

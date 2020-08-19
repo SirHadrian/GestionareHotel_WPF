@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:GestionareHotel.Views"
+             xmlns:local="clr-namespace:GestionareHotel.Views" xmlns:validationrules="clr-namespace:GestionareHotel.Models"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="620" Background="#04c582">
+
+
 
 
     <Border Background="#2e3137" CornerRadius="10 0 0 10">
@@ -46,8 +48,16 @@
             <Button Command="{Binding LoadOffersCommand}" Background="#545d6a" Foreground="White" FontSize="16" Margin="18" Content="  Load Offers  " Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center"></Button>
 
 
-            <TextBox Text="{Binding BookID}" Grid.Row="5" Grid.Column="1" Margin="124 24 24 24"></TextBox>
-            <Button Command="{Binding BookCommand}" Background="#545d6a" Foreground="White" FontSize="16" Margin="20" Content="  Book  " Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center"></Button>
+            <TextBox x:Name="BookID" Grid.Row="5" Grid.Column="1" Margin="124 24 24 24">
+                <TextBox.Text>
+                    <Binding Path="BookID">
+                        <Binding.ValidationRules>
+                            <validationrules:NumberValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <Button x:Name="BookOffer" Command="{Binding BookCommand}" Background="#545d6a" Foreground="White" FontSize="16" Margin="20" Content="  Book  " Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center"></Button>
         </Grid>
     </Border>
 </UserControl>

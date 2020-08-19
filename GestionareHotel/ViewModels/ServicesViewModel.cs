@@ -141,18 +141,24 @@ namespace GestionareHotel.ViewModels
             var builder = new EntityConnectionStringBuilder(conectionStringEF);
             var regularConnectionString = builder.ProviderConnectionString;
 
-            using (SqlConnection con = new SqlConnection(regularConnectionString))
+            try
             {
-                con.Open();
-                using (SqlCommand cmd = new SqlCommand("DeleteServ", con))
+                using (SqlConnection con = new SqlConnection(regularConnectionString))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("DeleteServ", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@id", DeleteServiceID);
+                        cmd.Parameters.AddWithValue("@id", DeleteServiceID);
 
-                    cmd.ExecuteNonQuery();
+                        cmd.ExecuteNonQuery();
+                    }
+                    con.Close();
                 }
-                con.Close();
+            }catch
+            {
+                System.Windows.MessageBox.Show("Cannot delete, required for Rezervations");
             }
             DeleteServiceID = null;
             System.Windows.MessageBox.Show("Service Deleted", "Services", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -182,19 +188,26 @@ namespace GestionareHotel.ViewModels
             var builder = new EntityConnectionStringBuilder(conectionStringEF);
             var regularConnectionString = builder.ProviderConnectionString;
 
-            using (SqlConnection con = new SqlConnection(regularConnectionString))
+            try
             {
-                con.Open();
-                using (SqlCommand cmd = new SqlCommand("AddServ", con))
+                using (SqlConnection con = new SqlConnection(regularConnectionString))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("AddServ", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@descriere", Service);
-                    cmd.Parameters.AddWithValue("@pret", Price);
+                        cmd.Parameters.AddWithValue("@descriere", Service);
+                        cmd.Parameters.AddWithValue("@pret", Price);
 
-                    cmd.ExecuteNonQuery();
+                        cmd.ExecuteNonQuery();
+                    }
+                    con.Close();
                 }
-                con.Close();
+            }
+            catch
+            {
+                System.Windows.MessageBox.Show("Incorect values");
             }
             System.Windows.MessageBox.Show("Service added!", "Services", MessageBoxButton.OK, MessageBoxImage.Information);
 

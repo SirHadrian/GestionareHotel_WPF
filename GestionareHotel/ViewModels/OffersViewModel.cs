@@ -120,23 +120,30 @@ namespace GestionareHotel.ViewModels
             var builder = new EntityConnectionStringBuilder(conectionStringEF);
             var regularConnectionString = builder.ProviderConnectionString;
 
-            using (SqlConnection con = new SqlConnection(regularConnectionString))
+            try
             {
-                con.Open();
-                using (SqlCommand cmd = new SqlCommand("AddOffer", con))
+                using (SqlConnection con = new SqlConnection(regularConnectionString))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("AddOffer", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@offer", Offer);
-                    cmd.Parameters.AddWithValue("@price", Price);
-                    cmd.Parameters.AddWithValue("@from", StartDate);
-                    cmd.Parameters.AddWithValue("@to", EndDate);
-                    cmd.Parameters.AddWithValue("@img", (object)Tools.ReadImage(ImagePath));
-                
+                        cmd.Parameters.AddWithValue("@offer", Offer);
+                        cmd.Parameters.AddWithValue("@price", Price);
+                        cmd.Parameters.AddWithValue("@from", StartDate);
+                        cmd.Parameters.AddWithValue("@to", EndDate);
+                        cmd.Parameters.AddWithValue("@img", (object)Tools.ReadImage(ImagePath));
 
-                    cmd.ExecuteNonQuery();
+
+                        cmd.ExecuteNonQuery();
+                    }
+                    con.Close();
                 }
-                con.Close();
+            }
+            catch
+            {
+                System.Windows.MessageBox.Show("Incorect values");
             }
             System.Windows.MessageBox.Show("Offer added!", "Offers", MessageBoxButton.OK, MessageBoxImage.Information);
 

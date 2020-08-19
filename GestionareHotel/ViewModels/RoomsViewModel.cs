@@ -138,23 +138,30 @@ namespace GestionareHotel.ViewModels
             var builder = new EntityConnectionStringBuilder(conectionStringEF);
             var regularConnectionString = builder.ProviderConnectionString;
 
-            using (SqlConnection con = new SqlConnection(regularConnectionString))
+            try
             {
-                con.Open();
-                using (SqlCommand cmd = new SqlCommand("AddRoom", con))
+                using (SqlConnection con = new SqlConnection(regularConnectionString))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("AddRoom", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@denumire", Denumire);
-                    cmd.Parameters.AddWithValue("@descriere", Descriere);
-                    cmd.Parameters.AddWithValue("@numarcamere", NrCamere);
-                    cmd.Parameters.AddWithValue("@numarpersoane", NrPersoane);
-                    cmd.Parameters.AddWithValue("@imagine", (object)Tools.ReadImage(ImagePath));
-                    cmd.Parameters.AddWithValue("@pret", Price);
+                        cmd.Parameters.AddWithValue("@denumire", Denumire);
+                        cmd.Parameters.AddWithValue("@descriere", Descriere);
+                        cmd.Parameters.AddWithValue("@numarcamere", NrCamere);
+                        cmd.Parameters.AddWithValue("@numarpersoane", NrPersoane);
+                        cmd.Parameters.AddWithValue("@imagine", (object)Tools.ReadImage(ImagePath));
+                        cmd.Parameters.AddWithValue("@pret", Price);
 
-                    cmd.ExecuteNonQuery();
+                        cmd.ExecuteNonQuery();
+                    }
+                    con.Close();
                 }
-                con.Close();
+            }
+            catch
+            {
+                System.Windows.MessageBox.Show("Incorect values");
             }
             System.Windows.MessageBox.Show("Room added!", "Rooms", MessageBoxButton.OK, MessageBoxImage.Information);
 

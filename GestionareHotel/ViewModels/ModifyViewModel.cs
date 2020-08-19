@@ -92,19 +92,24 @@ namespace GestionareHotel.ViewModels
             var builder = new EntityConnectionStringBuilder(conectionStringEF);
             var regularConnectionString = builder.ProviderConnectionString;
 
-
-            using (SqlConnection con = new SqlConnection(regularConnectionString))
+            try
             {
-                con.Open();
-                using (SqlCommand cmd = new SqlCommand("DeleteOffer", con))
+                using (SqlConnection con = new SqlConnection(regularConnectionString))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("DeleteOffer", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@id", DeleteOfferID);
+                        cmd.Parameters.AddWithValue("@id", DeleteOfferID);
 
-                    cmd.ExecuteNonQuery();
+                        cmd.ExecuteNonQuery();
+                    }
+                    con.Close();
                 }
-                con.Close();
+            }catch
+            {
+                System.Windows.MessageBox.Show("Cannot delete, required for Rezervations");
             }
             DeleteOfferID = null;
             System.Windows.MessageBox.Show("Offer Deleted!", "Modify", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -134,18 +139,25 @@ namespace GestionareHotel.ViewModels
             var builder = new EntityConnectionStringBuilder(conectionStringEF);
             var regularConnectionString = builder.ProviderConnectionString;
 
-            using (SqlConnection con = new SqlConnection(regularConnectionString))
+            try
             {
-                con.Open();
-                using (SqlCommand cmd = new SqlCommand("DeleteRoom", con))
+                using (SqlConnection con = new SqlConnection(regularConnectionString))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand("DeleteRoom", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@id", DeleteRoomID);
+                        cmd.Parameters.AddWithValue("@id", DeleteRoomID);
 
-                    cmd.ExecuteNonQuery();
+                        cmd.ExecuteNonQuery();
+                    }
+                    con.Close();
                 }
-                con.Close();
+            }
+            catch
+            {
+                System.Windows.MessageBox.Show("Cannot delete, required for Rezervations");
             }
             DeleteRoomID = null;
             System.Windows.MessageBox.Show("Room Deleted!", "Modify", MessageBoxButton.OK, MessageBoxImage.Information);

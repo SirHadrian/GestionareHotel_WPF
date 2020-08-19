@@ -57,6 +57,8 @@ namespace GestionareHotel.ViewModels
         //=================
         public void LoadOffers(object param)
         {
+            //Debug.Write(BookID);
+
             string conectionStringEF = ConfigurationManager.ConnectionStrings["GestionareHotelEntities"].ConnectionString;
             var builder = new EntityConnectionStringBuilder(conectionStringEF);
             var regularConnectionString = builder.ProviderConnectionString;
