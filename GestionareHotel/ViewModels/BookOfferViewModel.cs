@@ -1,5 +1,6 @@
 ﻿using GestionareHotel.Commands;
 using GestionareHotel.Models;
+using GestionareHotel.Models.Actions;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -17,10 +18,11 @@ namespace GestionareHotel.ViewModels
 {
     class BookOfferViewModel: BaseViewModel
     {
-        SqlDataAdapter sda;
-        //SqlCommandBuilder scb;
-        DataTable dt;
-
+        private BookOfferActions _operations;
+        public BookOfferViewModel()
+        {
+            _operations = new BookOfferActions(this);
+        }
 
 
         #region Properties
@@ -55,105 +57,19 @@ namespace GestionareHotel.ViewModels
 
         #region Commands
         //=================
-        public void LoadOffers(object param)
-        {
-            //Debug.Write(BookID);
-
-            string conectionStringEF = ConfigurationManager.ConnectionStrings["GestionareHotelEntities"].ConnectionString;
-            var builder = new EntityConnectionStringBuilder(conectionStringEF);
-            var regularConnectionString = builder.ProviderConnectionString;
-
-
-            SqlConnection con = new SqlConnection(regularConnectionString);
-            string querry = "SELECT ID, OfferImage AS Image, Offer_Description, Price, StartDate, EndDate FROM Offers WHERE StartDate <= GETDATE() AND EndDate >= GETDATE();";
-
-            sda = new SqlDataAdapter(querry, con);
-            dt = new DataTable();
-            sda.Fill(dt);
-
-            OffersDataTable = dt;
-
-            Debug.WriteLine("Executat");
-        }
-
         private ICommand _loadOffers;
         public ICommand LoadOffersCommand
         {
             get
             {
                 if (_loadOffers == null)
-                    _loadOffers = new RelayCommand(LoadOffers);
+                {
+                    _loadOffers = new RelayCommand(_operations.LoadOffers);
+                }
                 return _loadOffers;
             }
         }
 
-
-        public void Book(object param)
-        {
-            string conectionStringEF = ConfigurationManager.ConnectionStrings["GestionareHotelEntities"].ConnectionString;
-            var builder = new EntityConnectionStringBuilder(conectionStringEF);
-            var regularConnectionString = builder.ProviderConnectionString;
-
-
-
-            using (SqlConnection con = new SqlConnection(regularConnectionString))
-            {
-                con.Open();
-
-
-                using (SqlCommand cmd = new SqlCommand("hasRezervation", con))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    cmd.Parameters.AddWithValue("@Username", Props.curentuser);
-
-
-                    int status = Convert.ToInt32(cmd.ExecuteScalar());
-
-                    if (!(status == 1))
-                    {
-                        using (SqlCommand cmd2 = new SqlCommand("newRezervation", con))
-                        {
-                            cmd2.CommandType = CommandType.StoredProcedure;
-
-                            cmd2.Parameters.AddWithValue("@Username", Props.curentuser);
-
-                            cmd2.ExecuteNonQuery();
-                        }
-                    }
-
-                }
-                //===================================
-
-                try
-                {
-                    if (BookID == null)
-                        throw new Exception("BookId value is null");
-
-                    using (SqlCommand cmd = new SqlCommand("updateRezervationsOffers", con))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-                        cmd.Parameters.AddWithValue("@username", Props.curentuser);
-                       
-                        cmd.Parameters.AddWithValue("@idOffer", BookID);
-                  
-                        cmd.ExecuteNonQuery();
-
-                        MessageBox.Show("Offer Booked!");
-                    }
-                }
-                catch(Exception e)
-                {
-                    Debug.WriteLine(e);
-                    MessageBox.Show("Insert a correct value");
-                }
-
-
-                con.Close();
-            }
-            Debug.WriteLine("Executat");
-        }
 
         private ICommand _bookRoom;
         public ICommand BookCommand
@@ -161,7 +77,9 @@ namespace GestionareHotel.ViewModels
             get
             {
                 if (_bookRoom == null)
-                    _bookRoom = new RelayCommand(Book);
+                {
+                    _bookRoom = new RelayCommand(_operations.Book);
+                }
                 return _bookRoom;
             }
         }

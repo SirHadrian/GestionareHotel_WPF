@@ -46,6 +46,7 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
+            
             <DatePicker SelectedDate="{Binding StartDate}" Grid.Row="3" Grid.Column="1" Margin="14"></DatePicker>
             <DatePicker SelectedDate="{Binding EndDate}" Grid.Row="4" Grid.Column="1" Margin="14"></DatePicker>
             

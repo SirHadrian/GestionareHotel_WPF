@@ -1,4 +1,5 @@
 ﻿using GestionareHotel.Commands;
+using GestionareHotel.Models.Actions;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,9 +15,11 @@ namespace GestionareHotel.ViewModels
 {
     class AngajatViewModel: BaseViewModel
     {
-        SqlDataAdapter sda;
-        SqlCommandBuilder scb;
-        DataTable dt;
+        private AngajatActions _operations;
+        public AngajatViewModel()
+        {
+            _operations = new AngajatActions(this);
+        }
 
 
         #region Properties
@@ -40,40 +43,19 @@ namespace GestionareHotel.ViewModels
 
         #region Commands
         //==============
-        public void LoadRezervations(object param)
-        {
-            string conectionStringEF = ConfigurationManager.ConnectionStrings["GestionareHotelEntities"].ConnectionString;
-            var builder = new EntityConnectionStringBuilder(conectionStringEF);
-            var regularConnectionString = builder.ProviderConnectionString;
-
-
-            SqlConnection con = new SqlConnection(regularConnectionString);
-            string querry = "SELECT ID, Active, Canceled, Paid, ID_User, ID_Room, ID_Offer, ID_Service FROM Rezervations;";
-
-            sda = new SqlDataAdapter(querry, con);
-            dt = new DataTable();
-            sda.Fill(dt);
-
-            RezervationsDataTable = dt;
-        }
-
         private ICommand _loadRezervations;
         public ICommand LoadRezervationsCommand
         {
             get
             {
                 if (_loadRezervations == null)
-                    _loadRezervations = new RelayCommand(LoadRezervations);
+                {
+                    _loadRezervations = new RelayCommand(_operations.LoadRezervations);
+                }
                 return _loadRezervations;
             }
         }
 
-
-        public void UpdateRezervations(object param)
-        {
-            scb = new SqlCommandBuilder(sda);
-            sda.Update(RezervationsDataTable);
-        }
 
         private ICommand _updateRezervations;
         public ICommand UpdateRezervationsCommand
@@ -81,7 +63,9 @@ namespace GestionareHotel.ViewModels
             get
             {
                 if (_updateRezervations == null)
-                    _updateRezervations = new RelayCommand(UpdateRezervations);
+                {
+                    _updateRezervations = new RelayCommand(_operations.UpdateRezervations);
+                }
                 return _updateRezervations;
             }
         }

@@ -60,9 +60,6 @@ namespace GestionareHotel.ViewModels
         }
         //============================
         #endregion
-
-
-
     }
 
 }

@@ -72,6 +72,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Models\Actions\AngajatActions.cs" />
+    <Compile Include="Models\Actions\BookOfferActions.cs" />
+    <Compile Include="Models\Actions\BookRoomActions.cs" />
+    <Compile Include="Models\Actions\BookServiceActions.cs" />
+    <Compile Include="Models\Actions\CreateAccountActions.cs" />
+    <Compile Include="Models\Actions\LoginActions.cs" />
+    <Compile Include="Models\Actions\ModifyActions.cs" />
+    <Compile Include="Models\Actions\PrivilegesActions.cs" />
+    <Compile Include="Models\Actions\RoomsActions.cs" />
+    <Compile Include="Models\Actions\ServicesActions.cs" />
     <Compile Include="Models\GestionareHotel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

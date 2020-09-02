@@ -74,7 +74,6 @@ namespace GestionareHotel.ViewModels
         }
 
         private DateTime _startDate;
-        
         public DateTime StartDate
         {
             get

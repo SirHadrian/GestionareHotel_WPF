@@ -1,4 +1,5 @@
 ﻿using GestionareHotel.Commands;
+using GestionareHotel.Models.Actions;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -17,10 +18,11 @@ namespace GestionareHotel.ViewModels
 {
     class ServicesViewModel: BaseViewModel
     {
-        SqlDataAdapter sda;
-        SqlCommandBuilder scb;
-        DataTable dt;
-
+        private ServicesActions _operations;
+        public ServicesViewModel()
+        {
+            _operations = new ServicesActions(this);
+        }
 
         #region Properties
         //======================
@@ -82,40 +84,19 @@ namespace GestionareHotel.ViewModels
 
         #region Commands
         //=================
-        public void LoadService(object param)
-        {
-            string conectionStringEF = ConfigurationManager.ConnectionStrings["GestionareHotelEntities"].ConnectionString;
-            var builder = new EntityConnectionStringBuilder(conectionStringEF);
-            var regularConnectionString = builder.ProviderConnectionString;
-
-
-            SqlConnection con = new SqlConnection(regularConnectionString);
-            string querry = "SELECT ID, Descriere, Pret FROM Servicii;";
-
-            sda = new SqlDataAdapter(querry, con);
-            dt = new DataTable();
-            sda.Fill(dt);
-
-            ServicesDataTable = dt;
-        }
-
         private ICommand _loadServices;
         public ICommand LoadServicesCommand
         {
             get
             {
                 if (_loadServices == null)
-                    _loadServices = new RelayCommand(LoadService);
+                {
+                    _loadServices = new RelayCommand(_operations.LoadService);
+                }
                 return _loadServices;
             }
         }
 
-
-        public void UpdateServices(object param)
-        {
-            scb = new SqlCommandBuilder(sda);
-            sda.Update(ServicesDataTable);
-        }
 
         private ICommand _updateServices;
         public ICommand UpdateServicesCommand
@@ -123,46 +104,13 @@ namespace GestionareHotel.ViewModels
             get
             {
                 if (_updateServices == null)
-                    _updateServices = new RelayCommand(UpdateServices);
+                {
+                    _updateServices = new RelayCommand(_operations.UpdateServices);
+                }
                 return _updateServices;
             }
         }
 
-
-        public void DeleteService(object param)
-        {
-            if (DeleteServiceID == null)
-            {
-                System.Windows.MessageBox.Show("Insert the ID", "Services", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            string conectionStringEF = ConfigurationManager.ConnectionStrings["GestionareHotelEntities"].ConnectionString;
-            var builder = new EntityConnectionStringBuilder(conectionStringEF);
-            var regularConnectionString = builder.ProviderConnectionString;
-
-            try
-            {
-                using (SqlConnection con = new SqlConnection(regularConnectionString))
-                {
-                    con.Open();
-                    using (SqlCommand cmd = new SqlCommand("DeleteServ", con))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-                        cmd.Parameters.AddWithValue("@id", DeleteServiceID);
-
-                        cmd.ExecuteNonQuery();
-                    }
-                    con.Close();
-                }
-            }catch
-            {
-                System.Windows.MessageBox.Show("Cannot delete, required for Rezervations");
-            }
-            DeleteServiceID = null;
-            System.Windows.MessageBox.Show("Service Deleted", "Services", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
 
         private ICommand _deleteService;
         public ICommand DeleteServiceCommand
@@ -170,49 +118,13 @@ namespace GestionareHotel.ViewModels
             get
             {
                 if (_deleteService == null)
-                    _deleteService = new RelayCommand(DeleteService);
+                {
+                    _deleteService = new RelayCommand(_operations.DeleteService);
+                }
                 return _deleteService;
             }
         }
-
-
-        public void AddService(object param)
-        {
-            if (Service == null || Price == null) 
-            {
-                System.Windows.MessageBox.Show("Missing parameters!", "Services", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            string conectionStringEF = ConfigurationManager.ConnectionStrings["GestionareHotelEntities"].ConnectionString;
-            var builder = new EntityConnectionStringBuilder(conectionStringEF);
-            var regularConnectionString = builder.ProviderConnectionString;
-
-            try
-            {
-                using (SqlConnection con = new SqlConnection(regularConnectionString))
-                {
-                    con.Open();
-                    using (SqlCommand cmd = new SqlCommand("AddServ", con))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-                        cmd.Parameters.AddWithValue("@descriere", Service);
-                        cmd.Parameters.AddWithValue("@pret", Price);
-
-                        cmd.ExecuteNonQuery();
-                    }
-                    con.Close();
-                }
-            }
-            catch
-            {
-                System.Windows.MessageBox.Show("Incorect values");
-            }
-            System.Windows.MessageBox.Show("Service added!", "Services", MessageBoxButton.OK, MessageBoxImage.Information);
-
-            Debug.WriteLine("Executat");
-        }
+                
 
         private ICommand _addService;
         public ICommand AddServiceCommand
@@ -220,7 +132,9 @@ namespace GestionareHotel.ViewModels
             get
             {
                 if (_addService == null)
-                    _addService = new RelayCommand(AddService);
+                {
+                    _addService = new RelayCommand(_operations.AddService);
+                }
                 return _addService;
             }
         }

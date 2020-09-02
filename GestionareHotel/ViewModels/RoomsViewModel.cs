@@ -1,5 +1,6 @@
 ﻿using GestionareHotel.Commands;
 using GestionareHotel.Models;
+using GestionareHotel.Models.Actions;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -21,6 +22,13 @@ namespace GestionareHotel.ViewModels
 {
     class RoomsViewModel: BaseViewModel
     {
+        private RoomsActions _operations;
+        public RoomsViewModel()
+        {
+            _operations = new RoomsActions(this);
+        }
+
+
         #region Properties
         //=============
         private string _denumire = null;
@@ -126,85 +134,29 @@ namespace GestionareHotel.ViewModels
 
         #region Commands
         //==============
-        public void Add(object param)
-        {
-            if (Descriere == null || NrCamere == null || NrPersoane == null || Price == null) 
-            {
-                System.Windows.MessageBox.Show("All fields must be completed", "Rooms" , MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            string conectionStringEF = ConfigurationManager.ConnectionStrings["GestionareHotelEntities"].ConnectionString;
-            var builder = new EntityConnectionStringBuilder(conectionStringEF);
-            var regularConnectionString = builder.ProviderConnectionString;
-
-            try
-            {
-                using (SqlConnection con = new SqlConnection(regularConnectionString))
-                {
-                    con.Open();
-                    using (SqlCommand cmd = new SqlCommand("AddRoom", con))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-                        cmd.Parameters.AddWithValue("@denumire", Denumire);
-                        cmd.Parameters.AddWithValue("@descriere", Descriere);
-                        cmd.Parameters.AddWithValue("@numarcamere", NrCamere);
-                        cmd.Parameters.AddWithValue("@numarpersoane", NrPersoane);
-                        cmd.Parameters.AddWithValue("@imagine", (object)Tools.ReadImage(ImagePath));
-                        cmd.Parameters.AddWithValue("@pret", Price);
-
-                        cmd.ExecuteNonQuery();
-                    }
-                    con.Close();
-                }
-            }
-            catch
-            {
-                System.Windows.MessageBox.Show("Incorect values");
-            }
-            System.Windows.MessageBox.Show("Room added!", "Rooms", MessageBoxButton.OK, MessageBoxImage.Information);
-
-            Debug.WriteLine("Executat");
-        }
-
         private ICommand _addRoom;
         public ICommand AddRoom
         {
             get
             {
                 if (_addRoom == null)
-                    _addRoom = new RelayCommand(Add);
+                {
+                    _addRoom = new RelayCommand(_operations.Add);
+                }
                 return _addRoom;
             }
         }
 
-        //==============
-        public void Browse(object param)
-        {
-            OpenFileDialog choofdlog = new OpenFileDialog();
-            choofdlog.Filter = "All Files (*.*)|*.*";
-            choofdlog.FilterIndex = 1;
-            choofdlog.Multiselect = false;
-
-            if (choofdlog.ShowDialog() == DialogResult.OK)
-            {
-                string sFileName = choofdlog.FileName;
-                Debug.WriteLine(sFileName);
-                ImagePath = sFileName;
-
-                Image = (BitmapSource)new ImageSourceConverter().ConvertFrom(Tools.ReadImage(sFileName));
-            }
-
-        }
-
+       
         private ICommand _browse;
         public ICommand BrowseCommand
         {
             get
             {
                 if (_browse == null)
-                    _browse = new RelayCommand(Browse);
+                {
+                    _browse = new RelayCommand(_operations.Browse);
+                }
                 return _browse;
             }
         }
