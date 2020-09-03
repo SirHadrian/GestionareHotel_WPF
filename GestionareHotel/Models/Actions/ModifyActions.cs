@@ -58,6 +58,7 @@ namespace GestionareHotel.Models.Actions
             catch
             {
                 System.Windows.MessageBox.Show("Cannot delete, required for Rezervations");
+                return;
             }
             _modifyViewModel.DeleteOfferID = null;
             System.Windows.MessageBox.Show("Offer Deleted!", "Modify", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -95,6 +96,7 @@ namespace GestionareHotel.Models.Actions
             catch
             {
                 System.Windows.MessageBox.Show("Cannot delete, required for Rezervations");
+                return;
             }
 
             _modifyViewModel.DeleteRoomID = null;
