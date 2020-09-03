@@ -37,7 +37,7 @@
 
             <Button Command="{Binding LoadServicesCommand}" Background="#545d6a" Foreground="White" FontSize="16" Margin="18" Content="  Load Service  " Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center"></Button>
 
-            <TextBox Grid.Row="5" Grid.Column="1" Margin="124 24 24 24">
+            <TextBox Grid.Row="5" Grid.Column="1" Margin="24" HorizontalAlignment="Right" Width="32">
                 <TextBox.Text>
                     <Binding Path="BookID">
                         <Binding.ValidationRules>

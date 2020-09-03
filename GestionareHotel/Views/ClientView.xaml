@@ -23,6 +23,9 @@
         <DataTemplate x:Name="MyBooksViewModel" DataType="{x:Type viewmodels:MyBooksViewModel}">
             <views:MyBooksView DataContext="{Binding}"/>
         </DataTemplate>
+        <DataTemplate x:Name="CancelBooksViewModel" DataType="{x:Type viewmodels:CancelBooksViewModel}">
+            <views:CancelBooks DataContext="{Binding}"/>
+        </DataTemplate>
     </UserControl.Resources>
     
 
@@ -40,6 +43,7 @@
                     <Button x:Name="BookServiceBtn" Content="BookService" Margin="6" Background="#545d6a" Foreground="White" FontSize="16" Click="BookServiceBtn_Click"/>
 
                     <Button x:Name="MyBooksBtn" Content="MyBooks" Margin="6" Background="#545d6a" Foreground="White" FontSize="16" Click="MyBooksBtn_Click"/>
+                    <Button x:Name="CancelBooksBtn" Content="CancelBook" Margin="6" Background="#545d6a" Foreground="White" FontSize="16" Click="CancelBooksBtn_Click"/>
 
                 </StackPanel>
             </DockPanel>

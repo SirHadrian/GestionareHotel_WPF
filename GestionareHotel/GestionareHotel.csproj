@@ -76,9 +76,12 @@
     <Compile Include="Models\Actions\BookOfferActions.cs" />
     <Compile Include="Models\Actions\BookRoomActions.cs" />
     <Compile Include="Models\Actions\BookServiceActions.cs" />
+    <Compile Include="Models\Actions\CancelBooksActions.cs" />
     <Compile Include="Models\Actions\CreateAccountActions.cs" />
     <Compile Include="Models\Actions\LoginActions.cs" />
     <Compile Include="Models\Actions\ModifyActions.cs" />
+    <Compile Include="Models\Actions\MyBooksActions.cs" />
+    <Compile Include="Models\Actions\OffersActions.cs" />
     <Compile Include="Models\Actions\PrivilegesActions.cs" />
     <Compile Include="Models\Actions\RoomsActions.cs" />
     <Compile Include="Models\Actions\ServicesActions.cs" />
@@ -123,6 +126,7 @@
     <Compile Include="ViewModels\BookOfferViewModel.cs" />
     <Compile Include="ViewModels\BookRoomViewModel.cs" />
     <Compile Include="ViewModels\BookServiceViewModel.cs" />
+    <Compile Include="ViewModels\CancelBooksViewModel.cs" />
     <Compile Include="ViewModels\ClientViewModel.cs" />
     <Compile Include="ViewModels\CreateAccountViewModel.cs" />
     <Compile Include="ViewModels\ModifyViewModel.cs" />
@@ -147,6 +151,9 @@
     </Compile>
     <Compile Include="Views\BookServiceView.xaml.cs">
       <DependentUpon>BookServiceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CancelBooks.xaml.cs">
+      <DependentUpon>CancelBooks.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ClientView.xaml.cs">
       <DependentUpon>ClientView.xaml</DependentUpon>
@@ -213,6 +220,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\BookServiceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CancelBooks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

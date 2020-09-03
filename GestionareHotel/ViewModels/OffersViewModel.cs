@@ -1,5 +1,6 @@
 ﻿using GestionareHotel.Commands;
 using GestionareHotel.Models;
+using GestionareHotel.Models.Actions;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -20,17 +21,32 @@ namespace GestionareHotel.ViewModels
 {
     class OffersViewModel: BaseViewModel
     {
-        private string ImagePath;
+        private OffersActions _operations;
 
         public OffersViewModel()
         {
             StartDate = DateTime.Now;
             EndDate = DateTime.Now;
+            _operations = new OffersActions(this);
         }
-        
+
 
         #region Properties
         //=================
+        private string _imagePath;
+        public string ImagePath
+        {
+            get
+            {
+                return _imagePath;
+            }
+            set
+            {
+                _imagePath = value;
+                OnPropertyChanged("ImagePath");
+            }
+        }
+
         private ImageSource _image = null;
         public ImageSource Image
         {
@@ -107,77 +123,19 @@ namespace GestionareHotel.ViewModels
 
         #region Commands
         //=================
-        public void AddOffer(object param)
-        {
-            if (Offer == null || Price == null) 
-            {
-                System.Windows.MessageBox.Show("Complete all the fields!", "Offers", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            string conectionStringEF = ConfigurationManager.ConnectionStrings["GestionareHotelEntities"].ConnectionString;
-            var builder = new EntityConnectionStringBuilder(conectionStringEF);
-            var regularConnectionString = builder.ProviderConnectionString;
-
-            try
-            {
-                using (SqlConnection con = new SqlConnection(regularConnectionString))
-                {
-                    con.Open();
-                    using (SqlCommand cmd = new SqlCommand("AddOffer", con))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-                        cmd.Parameters.AddWithValue("@offer", Offer);
-                        cmd.Parameters.AddWithValue("@price", Price);
-                        cmd.Parameters.AddWithValue("@from", StartDate);
-                        cmd.Parameters.AddWithValue("@to", EndDate);
-                        cmd.Parameters.AddWithValue("@img", (object)Tools.ReadImage(ImagePath));
-
-
-                        cmd.ExecuteNonQuery();
-                    }
-                    con.Close();
-                }
-            }
-            catch
-            {
-                System.Windows.MessageBox.Show("Incorect values");
-            }
-            System.Windows.MessageBox.Show("Offer added!", "Offers", MessageBoxButton.OK, MessageBoxImage.Information);
-
-            Debug.WriteLine("Executat");
-        }
-
         private ICommand _addOffer;
         public ICommand AddOfferCommand
         {
             get
             {
                 if (_addOffer == null)
-                    _addOffer = new RelayCommand(AddOffer);
+                {
+                    _addOffer = new RelayCommand(_operations.AddOffer);
+                }
                 return _addOffer;
             }
         }
 
-
-        public void Browse(object param)
-        {
-            OpenFileDialog choofdlog = new OpenFileDialog();
-            choofdlog.Filter = "All Files (*.*)|*.*";
-            choofdlog.FilterIndex = 1;
-            choofdlog.Multiselect = false;
-
-            if (choofdlog.ShowDialog() == DialogResult.OK)
-            {
-                string sFileName = choofdlog.FileName;
-                Debug.WriteLine(sFileName);
-                ImagePath = sFileName;
-
-                Image = (BitmapSource)new ImageSourceConverter().ConvertFrom(Tools.ReadImage(sFileName));
-            }
-
-        }
 
         private ICommand _browse;
         public ICommand BrowseCommand
@@ -185,7 +143,9 @@ namespace GestionareHotel.ViewModels
             get
             {
                 if (_browse == null)
-                    _browse = new RelayCommand(Browse);
+                {
+                    _browse = new RelayCommand(_operations.Browse);
+                }
                 return _browse;
             }
         }

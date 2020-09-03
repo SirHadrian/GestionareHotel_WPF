@@ -1,5 +1,6 @@
 ﻿using GestionareHotel.Commands;
 using GestionareHotel.Models;
+using GestionareHotel.Models.Actions;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -17,16 +18,30 @@ namespace GestionareHotel.ViewModels
 {
     class MyBooksViewModel: BaseViewModel
     {
-        SqlDataAdapter sda;
-        //SqlCommandBuilder scb;
-        DataTable dt;
+        private MyBooksActions _operations;
+        public MyBooksViewModel()
+        {
+            _operations = new MyBooksActions(this);
+        }
 
-        List<string> _toPay = new List<string>();
-
-        int money = 0;
+        
 
         #region Proprieties
         //==================
+        private List<string> _toPay = new List<string>();
+        public List<string> ToPay
+        {
+            get
+            {
+                return _toPay;
+            }
+            set
+            {
+                _toPay = value;
+                OnPropertyChanged("ToPay");
+            }
+        }
+
         private string _money;
         public string Money
         {
@@ -80,136 +95,15 @@ namespace GestionareHotel.ViewModels
 
         #region Commands
         //================
-        public void LoadRezervations(object param)
-        {
-            string conectionStringEF = ConfigurationManager.ConnectionStrings["GestionareHotelEntities"].ConnectionString;
-            var builder = new EntityConnectionStringBuilder(conectionStringEF);
-            var regularConnectionString = builder.ProviderConnectionString;
-
-            //==============================
-            SqlConnection con = new SqlConnection(regularConnectionString);
-            string querry = @"SELECT Rezervations.ID AS ID, Active, Canceled, Paid, 
-                            Users.UserName AS UserName,
-                            Users.EmailAdress AS EmailAdress, 
-                            Rooms.Denumire AS Camera, 
-                            Rooms.Descriere AS Detalii,
-                            Rooms.NumarPersoane AS NrPersoane,
-                            Rooms.NumarCamere AS NrCamere,
-                            Rooms.Pret AS Pret
-
-                            FROM Rezervations 
-                            INNER JOIN Users ON Rezervations.ID_User = Users.ID
-                            INNER JOIN Rooms ON Rezervations.ID_Room = Rooms.ID
-                            WHERE Rezervations.Canceled = 0 AND Rezervations.Active = 1
-                            ;";
-
-
-            sda = new SqlDataAdapter(querry, con);
-            dt = new DataTable();
-            sda.Fill(dt);
-            RoomsRezervationsDataTable = dt;
-
-            foreach (DataRow dr in RoomsRezervationsDataTable.Rows)
-            {
-                string name = dr["Pret"].ToString();
-                _toPay.Add(name);
-            }
-
-            //================================
-
-            con = new SqlConnection(regularConnectionString);
-            querry = @"SELECT Rezervations.ID AS ID, Active, Canceled, Paid, 
-                            Users.UserName AS UserName,
-                            Users.EmailAdress AS EmailAdress, 
-                            Offers.Offer_Description AS Offer,
-                            Offers.Price AS Price,
-                            Offers.StartDate AS StartDate,
-                            Offers.EndDate AS EndDate
-
-                            FROM Rezervations 
-                            INNER JOIN Users ON Rezervations.ID_User = Users.ID
-                            INNER JOIN Offers ON Rezervations.ID_Offer = Offers.ID
-                            WHERE Rezervations.Canceled = 0 AND Rezervations.Active = 1
-                            ;";
-
-
-            sda = new SqlDataAdapter(querry, con);
-            dt = new DataTable();
-            sda.Fill(dt);
-            OffersRezervationsDataTable = dt;
-
-            foreach (DataRow dr in OffersRezervationsDataTable.Rows)
-            {
-                string name = dr["Price"].ToString();
-                _toPay.Add(name);
-            }
-            //===================================
-
-            con = new SqlConnection(regularConnectionString);
-            querry = @"SELECT Rezervations.ID AS ID, Active, Canceled, Paid, 
-                            Users.UserName AS UserName,
-                            Users.EmailAdress AS EmailAdress, 
-                            Servicii.Descriere AS Service,
-                            Servicii.Pret AS Price
-
-                            FROM Rezervations 
-                            INNER JOIN Users ON Rezervations.ID_User = Users.ID
-                            INNER JOIN Servicii ON Rezervations.ID_Service = Servicii.ID
-                            WHERE Rezervations.Canceled = 0 AND Rezervations.Active = 1
-                            ;";
-
-
-            sda = new SqlDataAdapter(querry, con);
-            dt = new DataTable();
-            sda.Fill(dt);
-            ServicesRezervationsDataTable = dt;
-
-            foreach (DataRow dr in ServicesRezervationsDataTable.Rows)
-            {
-                string name = dr["Price"].ToString();
-                _toPay.Add(name);
-            }
-
-            List<string> temp = new List<string>();
-            
-            foreach (string st in _toPay)
-            {
-                string str = "";
-                for (int i = 0; i < st.Length; ++i) 
-                {
-                    
-                    if (st[i] != '.')
-                    {
-                        str = str + st[i];
-                       
-                    }
-                    else
-                    {
-                        temp.Add(str);
-                    }
-                }
-            }
-
-            _toPay.Clear();
-            _toPay = temp;
-            money = 0;
-            
-            foreach(string st in _toPay)
-            {
-                money += Int32.Parse(st);
-            }
-
-            Money = "$" + money.ToString();
-            //Debug.WriteLine("Executat");
-        }
-
         private ICommand _loadRezervations;
         public ICommand LoadRezervationsCommand
         {
             get
             {
                 if (_loadRezervations == null)
-                    _loadRezervations = new RelayCommand(LoadRezervations);
+                {
+                    _loadRezervations = new RelayCommand(_operations.LoadRezervations);
+                }
                 return _loadRezervations;
             }
         }

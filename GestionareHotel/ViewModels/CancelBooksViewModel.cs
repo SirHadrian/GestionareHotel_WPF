@@ -2,10 +2,7 @@
 using GestionareHotel.Models.Actions;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
-using System.Data.Entity.Core.EntityClient;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,12 +10,12 @@ using System.Windows.Input;
 
 namespace GestionareHotel.ViewModels
 {
-    class AngajatViewModel: BaseViewModel
+    class CancelBooksViewModel: BaseViewModel
     {
-        private AngajatActions _operations;
-        public AngajatViewModel()
+        private CancelBooksActions _operations;
+        public CancelBooksViewModel()
         {
-            _operations = new AngajatActions(this);
+            _operations = new CancelBooksActions(this);
         }
 
 
@@ -71,30 +68,16 @@ namespace GestionareHotel.ViewModels
         }
 
 
-        private ICommand _dezactivateRezervations;
-        public ICommand DezactivateRezervationsCommand
+        private ICommand _cancelRezervation;
+        public ICommand CancelRezervationCommand
         {
             get
             {
-                if (_dezactivateRezervations == null)
+                if (_cancelRezervation == null)
                 {
-                    _dezactivateRezervations = new RelayCommand(_operations.DezactivateRezervations);
+                    _cancelRezervation = new RelayCommand(_operations.CancelRezervation);
                 }
-                return _dezactivateRezervations;
-            }
-        }
-
-
-        private ICommand _activateRezervations;
-        public ICommand ActivateRezervationsCommand
-        {
-            get
-            {
-                if (_activateRezervations == null)
-                {
-                    _activateRezervations = new RelayCommand(_operations.ActivateRezervations);
-                }
-                return _activateRezervations;
+                return _cancelRezervation;
             }
         }
         //==============

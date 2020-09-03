@@ -35,15 +35,18 @@ namespace GestionareHotel.Models.Actions
 
 
             SqlConnection con = new SqlConnection(regularConnectionString);
-            string querry = "SELECT ID, OfferImage AS Image, Offer_Description, Price, StartDate, EndDate FROM Offers WHERE StartDate <= GETDATE() AND EndDate >= GETDATE();";
-
-            _sda = new SqlDataAdapter(querry, con);
-            _dt = new DataTable();
-            _sda.Fill(_dt);
-
-            _bookOfferViewModel.OffersDataTable = _dt;
-
-            Debug.WriteLine("Executat");
+            con.Open();
+            using (var cmd = new SqlCommand("getOffers", con))
+            {
+                _dt = new DataTable();
+                using (_sda = new SqlDataAdapter(cmd))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    _sda.Fill(_dt);
+                    _bookOfferViewModel.OffersDataTable = _dt;
+                }
+            }
+            con.Close();
         }
 
 

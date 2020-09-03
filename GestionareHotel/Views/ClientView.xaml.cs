@@ -56,5 +56,10 @@ namespace GestionareHotel.Views
         {
             DataContext = new BookServiceViewModel();
         }
+
+        private void CancelBooksBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new CancelBooksViewModel();
+        }
     }
 }

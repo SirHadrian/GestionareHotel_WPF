@@ -48,7 +48,7 @@
             <Button Command="{Binding LoadOffersCommand}" Background="#545d6a" Foreground="White" FontSize="16" Margin="18" Content="  Load Offers  " Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center"></Button>
 
 
-            <TextBox x:Name="BookID" Grid.Row="5" Grid.Column="1" Margin="124 24 24 24">
+            <TextBox x:Name="BookID" HorizontalAlignment="Right" Grid.Row="5" Grid.Column="1" Margin="24" Width="32">
                 <TextBox.Text>
                     <Binding Path="BookID">
                         <Binding.ValidationRules>

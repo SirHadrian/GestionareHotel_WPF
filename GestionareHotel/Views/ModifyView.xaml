@@ -70,7 +70,7 @@
             <Button Command="{Binding LoadRoomsCommand}" Background="#545d6a" Foreground="White" FontSize="16" Content="  Load Rooms  " Margin="10" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="7"></Button>
             <Button Command="{Binding UpdateRoomsCommand}" Content=" Update Rooms " Grid.Column="0" Grid.Row="7" Margin="10" HorizontalAlignment="Right" Background="#545d6a" Foreground="White" FontSize="18"></Button>
             
-            <TextBox Grid.Column="1" Grid.Row="3" Margin="50 12 200 12">
+            <TextBox Grid.Column="1" Grid.Row="3" Margin="16" HorizontalAlignment="Left" Width="32">
                 <TextBox.Text>
                     <Binding Path="DeleteOfferID">
                         <Binding.ValidationRules>
@@ -81,7 +81,7 @@
             </TextBox>
             <Button Command="{Binding DeleteOfferCommand}" Background="#545d6a" Foreground="White" FontSize="16" Content="Delete" Grid.Column="1" Grid.Row="3" Margin="10" HorizontalAlignment="Center"></Button>
 
-            <TextBox Grid.Column="1" Grid.Row="7" Margin="50 12 200 12">
+            <TextBox Grid.Column="1" Grid.Row="7" Margin="16" HorizontalAlignment="Left" Width="32">
                 <TextBox.Text>
                     <Binding Path="DeleteRoomID">
                         <Binding.ValidationRules>
